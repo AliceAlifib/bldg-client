@@ -90,6 +90,8 @@ public class BldgController : MonoBehaviour
 	Resident currentRsdt;
 	BldgChatController bldgChatController;
 
+	Stack<string> addressStack = new Stack<string>();
+
 	// RETURN:
 	//private UnityAction onLogin;
 
@@ -457,10 +459,20 @@ public class BldgController : MonoBehaviour
 			updateFloorSign ();
 		}
 
-		reloadBuildings(address);
-		reloadResidents(address);
-		reloadRoads(address);
+		addressStack.Clear();
+		Debug.Log("Cleared address stack. Size: " + addressStack.Count);
+		addressStack.Push(address);
+		loadNextBldgInStack();
+	}
 
+	void loadNextBldgInStack() {
+		if (addressStack.Count > 0) {
+			string address = addressStack.Pop();
+			Debug.Log("Loading everything in address: " + address);
+			reloadBuildings(address);
+			reloadResidents(address);
+			reloadRoads(address);
+		}
 	}
 
 	float getCategoryScaleFactor(string category) {
@@ -619,6 +631,11 @@ public class BldgController : MonoBehaviour
 						Debug.LogError(e.ToString());
 					}
 					
+					if (b.is_composite) {
+						Debug.Log("Adding " + b.address + " to address stack");
+						addressStack.Push(b.address + "/l0");	// TODO need to somehow go over all floors
+						Debug.Log("Address stack size: " + addressStack.Count);
+					}
 					
 					//Debug.Log("About to call renderAuthorPicture on bldg " + count);
                     // TODO create picture element
@@ -626,6 +643,9 @@ public class BldgController : MonoBehaviour
 				}
 				if (dataChanged) {
 					EventManager.Instance.TriggerEvent("EntitiesChanged");
+					if (addressStack.Count > 0) {
+						loadNextBldgInStack();
+					}
 				}
 				// Debug.Log("Rendered " + count + " bldgs");
 			});
