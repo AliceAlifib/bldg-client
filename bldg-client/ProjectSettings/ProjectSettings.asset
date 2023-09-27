@@ -12,8 +12,8 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: fromTeal
-  productName: fromTeal
+  companyName: Alice.in
+  productName: Alice.in Client
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.0033374948, g: 0.6704318, b: 0.7075472, a: 1}
@@ -137,7 +137,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.5.6
+  bundleVersion: 0.0.1
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -156,7 +156,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Standalone: com.fromTeal.bldg-client
+    Standalone: com.Alice.in.Alice.in-Client
   buildNumber:
     Standalone: 0
     iPhone: 0
@@ -275,7 +275,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 948afa84ee0eb471db09bf7f4416ba63, type: 3}
+      m_Icon: {fileID: 2800000, guid: ba1c9561b790d9b4d9b4dbd8cc309aa0, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0

@@ -19,6 +19,7 @@ public class GlobalConfig : ScriptableObjectSingleton<GlobalConfig>
     private void OnEnable()
     {
         hideFlags = HideFlags.DontUnloadUnusedAsset;
+        //bldgServer = "http://localhost:4443";
     }
 
 }
