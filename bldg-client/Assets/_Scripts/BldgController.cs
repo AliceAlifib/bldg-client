@@ -91,6 +91,7 @@ public class BldgController : MonoBehaviour
 	BldgChatController bldgChatController;
 
 	Stack<string> addressStack = new Stack<string>();
+	IDictionary<string, Vector3> addressToLocation = new Dictionary<string, Vector3>();
 
 	// RETURN:
 	//private UnityAction onLogin;
@@ -459,6 +460,7 @@ public class BldgController : MonoBehaviour
 			updateFloorSign ();
 		}
 
+		addressToLocation.Clear();
 		addressStack.Clear();
 		Debug.Log("Cleared address stack. Size: " + addressStack.Count);
 		addressStack.Push(address);
@@ -466,7 +468,7 @@ public class BldgController : MonoBehaviour
 	}
 
 	void loadNextBldgInStack() {
-		if (addressStack.Count > 0) {
+		while (addressStack.Count > 0) {
 			string address = addressStack.Pop();
 			Debug.Log("Loading everything in address: " + address);
 			reloadBuildings(address);
@@ -615,9 +617,26 @@ public class BldgController : MonoBehaviour
 					if (address != "g") {
 						height = 2F;  // bldg is larger when inside a bldg, so floor is higher
 					}
-					Vector3 baseline = new Vector3(floorStartX, height, floorStartZ);	// WHY? if you set the correct Y, some images fail to display
+
+					// TODO: if the current bldg is in depth larger than 0, get the location of the container bldg
+					float originX = floorStartX;
+					float originZ = floorStartZ;
+					if (b.nesting_depth > 3) {
+						string parentContainerAddress = "";
+						Vector3 parentLocation = addressToLocation.TryGetValue(b.container_address, out parentLocation) ? parentLocation : new Vector3(0, 0, 0);
+						originX = parentLocation.x;
+						originZ = parentLocation.z;
+					}
+
+					// TODO change size based on nesting depth
+
+					Vector3 baseline = new Vector3(originX, height, originZ);	// WHY? if you set the correct Y, some images fail to display
 					baseline.x += b.x;
 					baseline.z += b.y;
+					if (b.is_composite) {
+						// store the rendered locations of container bldgs 
+						addressToLocation.Add(b.address, baseline);
+					}
 					GameObject prefab = getPrefabByEntityClass(b.entity_type);
 					GameObject bldgClone = null;
 					try {
