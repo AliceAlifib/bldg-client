@@ -621,18 +621,21 @@ public class BldgController : MonoBehaviour
 					// TODO: if the current bldg is in depth larger than 0, get the location of the container bldg
 					float originX = floorStartX;
 					float originZ = floorStartZ;
+					float scaleFactor = 1F;
+
 					if (b.nesting_depth > 3) {
-						string parentContainerAddress = "";
-						Vector3 parentLocation = addressToLocation.TryGetValue(b.container_address, out parentLocation) ? parentLocation : new Vector3(0, 0, 0);
+						string parentContainerAddress = AddressUtils.getBldg(b.flr);
+						Vector3 parentLocation = addressToLocation.TryGetValue(parentContainerAddress, out parentLocation) ? parentLocation : new Vector3(0, 0, 0);
 						originX = parentLocation.x;
 						originZ = parentLocation.z;
+						scaleFactor = 0.1F;
 					}
 
 					// TODO change size based on nesting depth
 
 					Vector3 baseline = new Vector3(originX, height, originZ);	// WHY? if you set the correct Y, some images fail to display
-					baseline.x += b.x;
-					baseline.z += b.y;
+					baseline.x += b.x * scaleFactor;
+					baseline.z += b.y * scaleFactor;
 					if (b.is_composite) {
 						// store the rendered locations of container bldgs 
 						addressToLocation.Add(b.address, baseline);
@@ -642,6 +645,9 @@ public class BldgController : MonoBehaviour
 					try {
 						bldgClone = (GameObject) Instantiate(prefab, baseline, Quaternion.identity);
 						bldgClone.tag = "Building";
+						if (b.nesting_depth > 3) {
+							bldgClone.transform.localScale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
+						}
 						BldgObject bldgObject = bldgClone.AddComponent<BldgObject>();
 						bldgObject.initialize(b, this);
 						renderModelData(bldgClone, b);
