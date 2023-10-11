@@ -614,8 +614,14 @@ public class BldgController : MonoBehaviour
 					}
 
 					float height = 0F;
-					if (address != "g") {
-						height = 2F;  // bldg is larger when inside a bldg, so floor is higher
+					//if (address != "g") {
+					//	height = 2F;  // bldg is larger when inside a bldg, so floor is higher
+					//}
+					int flrLevel = AddressUtils.getFlrLevel(b.flr);
+					Debug.Log("level of " + b.name + " is " + flrLevel);
+					float flrHeight = 0.7F;
+					if (flrLevel > 0) {
+						height = flrHeight * flrLevel;
 					}
 
 					// TODO: if the current bldg is in depth larger than 0, get the location of the container bldg
@@ -623,7 +629,7 @@ public class BldgController : MonoBehaviour
 					float originZ = floorStartZ;
 					float scaleFactor = 1F;
 
-					if (b.nesting_depth > 3) {
+					if (b.nesting_depth > 1) {
 						string parentContainerAddress = AddressUtils.getBldg(b.flr);
 						Vector3 parentLocation = addressToLocation.TryGetValue(parentContainerAddress, out parentLocation) ? parentLocation : new Vector3(0, 0, 0);
 						originX = parentLocation.x;
@@ -634,8 +640,8 @@ public class BldgController : MonoBehaviour
 					// TODO change size based on nesting depth
 
 					Vector3 baseline = new Vector3(originX, height, originZ);	// WHY? if you set the correct Y, some images fail to display
-					baseline.x += b.x * scaleFactor;
-					baseline.z += b.y * scaleFactor;
+					baseline.x += b.x * scaleFactor * 0.3F;
+					baseline.z += b.y * scaleFactor * 0.3F;
 					if (b.is_composite) {
 						// store the rendered locations of container bldgs 
 						addressToLocation.Add(b.address, baseline);
@@ -645,7 +651,7 @@ public class BldgController : MonoBehaviour
 					try {
 						bldgClone = (GameObject) Instantiate(prefab, baseline, Quaternion.identity);
 						bldgClone.tag = "Building";
-						if (b.nesting_depth > 3) {
+						if (b.nesting_depth > 1) {
 							bldgClone.transform.localScale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
 						}
 						BldgObject bldgObject = bldgClone.AddComponent<BldgObject>();
@@ -659,6 +665,8 @@ public class BldgController : MonoBehaviour
 					if (b.is_composite) {
 						Debug.Log("Adding " + b.address + " to address stack");
 						addressStack.Push(b.address + "/l0");	// TODO need to somehow go over all floors
+						addressStack.Push(b.address + "/l1");
+						addressStack.Push(b.address + "/l2");
 						Debug.Log("Address stack size: " + addressStack.Count);
 					}
 					

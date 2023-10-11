@@ -75,12 +75,20 @@ namespace Utils {
 		}
 
 		public static int getFlrLevel(string flr_addr) {
+			if (flr_addr == "g") {
+				return 0;
+			}
+			Debug.Log("00000 - getFlrLevel: " + flr_addr);
 			string[] parts = flr_addr.Split (DELIM_CHAR_ARRAY);
+			Debug.Log("11111 - parts: " + parts);
 			string last_part = parts [parts.Length - 1];
+			Debug.Log("22222 - last_part: " + last_part);
 			if (!last_part.StartsWith ("l")) {
 				throw new System.ArgumentException ("Expected a floor address, but got: " + flr_addr);
 			}
+			Debug.Log("3333 - not exception");
 			string level_str = last_part.Substring (1);
+			Debug.Log("4444 - level_str: " + level_str);
 			return System.Int32.Parse(level_str);
 		}
 
