@@ -92,6 +92,9 @@ public class BldgController : MonoBehaviour
 
 	Stack<string> addressStack = new Stack<string>();
 	IDictionary<string, Vector3> addressToLocation = new Dictionary<string, Vector3>();
+	IDictionary<string, float> addressToFlrHeight = new Dictionary<string, float>();
+	IDictionary<string, float> addressToFlr0Height = new Dictionary<string, float>();
+
 
 	// RETURN:
 	//private UnityAction onLogin;
@@ -525,7 +528,18 @@ public class BldgController : MonoBehaviour
 			else if (data_attributes.ContainsKey(label.name)) {
 				label.text = data_attributes[label.name];
 			}
-				
+			
+			if (data_attributes.ContainsKey("flr_height")) {
+				float flrHeight = float.Parse(data_attributes["flr_height"]);
+				Debug.Log("Setting flr height for " + data.address + " to " + flrHeight);
+				addressToFlrHeight[data.address] = flrHeight;
+			}
+
+			if (data_attributes.ContainsKey("flr0_height")) {
+				float flr0Height = float.Parse(data_attributes["flr0_height"]);
+				Debug.Log("Setting flr0 height for " + data.address + " to " + flr0Height);
+				addressToFlr0Height[data.address] = flr0Height;
+			}
 		}
 		
 		try {
@@ -614,14 +628,29 @@ public class BldgController : MonoBehaviour
 					}
 
 					float height = 0F;
+					float flr0Height = 0F;
 					//if (address != "g") {
 					//	height = 2F;  // bldg is larger when inside a bldg, so floor is higher
 					//}
 					int flrLevel = AddressUtils.getFlrLevel(b.flr);
+					string flrAddress = AddressUtils.getBldg(b.flr);
 					Debug.Log("level of " + b.name + " is " + flrLevel);
-					float flrHeight = 0.7F;
+					Debug.Log("flrAddress of " + b.name + " is " + flrAddress);
+					float flrHeight = 0.385F;
+					Debug.Log("Checking flr height for " + flrAddress);
+					if (addressToFlrHeight.ContainsKey(flrAddress)) {
+						Debug.Log("Found flr height for " + flrAddress + ": " + addressToFlrHeight[flrAddress]);
+						flrHeight = addressToFlrHeight[flrAddress];
+					}
+					if (addressToFlr0Height.ContainsKey(flrAddress)) {
+						Debug.Log("Found flr0 height for " + flrAddress + ": " + addressToFlr0Height[flrAddress]);
+						flr0Height = addressToFlr0Height[flrAddress];
+					}
 					if (flrLevel > 0) {
 						height = flrHeight * flrLevel;
+					}
+					if (flr0Height > 0) {
+						height += flr0Height;
 					}
 
 					// TODO: if the current bldg is in depth larger than 0, get the location of the container bldg
