@@ -9,6 +9,8 @@ using Models;
 public class BldgDoorKnob : MonoBehaviour
 {
 
+    public int level = 0;
+
     private string bldgName = "";
     private string bldgAddress = "";
     private string bldgURL = "";
@@ -46,11 +48,12 @@ public class BldgDoorKnob : MonoBehaviour
             Debug.Log("Invoking enter bldg action");
             CurrentResidentController crc = CurrentResidentController.Instance;
             Debug.Log("Sending enter bldg action for resident " +  crc.resident.email);
-            crc.SendEnterBldgAction(new EnterBldgAction() {
+            crc.SendEnterBldgFlrAction(new EnterBldgFlrAction() {
                 resident_email = crc.resident.email,
-                action_type = "ENTER_BLDG",
+                action_type = "ENTER_BLDG_FLR",
                 bldg_address = bldgAddress,
-                bldg_url = bldgURL
+                bldg_url = bldgURL,
+                flr_level = level
             });
         // }
     }

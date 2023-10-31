@@ -139,6 +139,16 @@ namespace Models
 	}
 
 	[Serializable]
+	public struct EnterBldgFlrAction
+	{
+		public string resident_email;
+		public string action_type;
+		public string bldg_address;
+		public string bldg_url;
+		public int flr_level;
+	}
+
+	[Serializable]
 	public struct ExitBldgAction
 	{
 		public string resident_email;

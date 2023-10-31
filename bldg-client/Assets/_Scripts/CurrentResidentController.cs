@@ -124,6 +124,30 @@ public class CurrentResidentController : ScriptableObjectSingleton<CurrentReside
         });
     }
 
+  public void SendEnterBldgFlrAction(EnterBldgFlrAction action) {
+        // call the act API
+        GlobalConfig conf = GlobalConfig.Instance;
+        string url = conf.bldgServer + conf.residentsBasePath + "/act";
+        Debug.Log("url = " + url);
+        // invoke act API
+        RequestHelper req = RestUtils.createRequest("POST", url, action);
+        RestClient.Post<ActionResponse>(req).Then(actionResponse => {
+            Debug.Log("Action sent, received new location");
+            Debug.Log(actionResponse.data.location);
+            Debug.Log("Received resident location as " + actionResponse.data.x + ", " + actionResponse.data.y);
+            resident.location = actionResponse.data.location;
+            resident.x = actionResponse.data.x;
+            resident.y = actionResponse.data.y;
+            resident.flr = actionResponse.data.flr;
+            resident.flr_url = actionResponse.data.flr_url;
+            if (resident.flr != "g") {
+                SceneManager.LoadScene("bldg_flr");
+            }
+        }).Catch(err => {
+            Debug.Log("Enter bldg action failed - " + err.Message);        
+        });
+    }
+
     public void SendExitBldgAction(ExitBldgAction action) {
         // call the act API
         GlobalConfig conf = GlobalConfig.Instance;
