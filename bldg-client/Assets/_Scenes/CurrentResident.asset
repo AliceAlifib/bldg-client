@@ -14,15 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resident:
     alias: dibau
-    direction: 60
+    direction: 120
     email: dibaunaumh@gmail.com
     home_bldg: g/b(17,24)/l0/b(4,5)
     id: 1
     text: 
     is_online: 1
-    location: g/b(126,27)
+    location: g/b(126,27)/l1/b(8,40)
     name: Udi Bauman
     previous_messages:
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g","say_flr_url":"g","say_location":"g/b(13,5)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      action bldg with name action1 and summary some action","say_time":1697006432584}'
     - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g","say_flr_url":"g","say_location":"g/b(50,21)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
       sales bldg with name cabinet and summary a cabinet with shelves","say_time":1696996319913}'
     - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g","say_flr_url":"g","say_location":"g/b(42,12)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
@@ -111,13 +113,14 @@ MonoBehaviour:
       time is it?","say_time":1685542957698}'
     - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(16,92)/l0","say_flr_url":"g/fromTeal/l0","say_location":"g/b(16,92)/l0/b(18,25)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"what
       time is it?","say_time":1685542909840}'
-    session_id: 486776e2-d6ad-4a8f-a9e9-4efc0900295b
-    x: 20
-    y: 0
-    flr: g
-    flr_url: g
-    updated_at: 2023-10-16T04:28:18
+    session_id: 143866b5-f33a-43d3-9508-964c593860ff
+    x: 8
+    y: 40
+    flr: g/b(126,27)/l1
+    flr_url: g/da-prob/l1
+    updated_at: 2023-11-08T03:15:52
+    nesting_depth: 1
   initialized: 1
   ACTION_SEND_INTERVAL: 200
-  inFlyingMode: 1
-  flyingHigh: 1
+  inFlyingMode: 0
+  flyingHigh: 0

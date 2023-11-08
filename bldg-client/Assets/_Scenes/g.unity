@@ -3818,7 +3818,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.96483, y: 1}
+    m_SensorSize: {x: 1.957796, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -5193,7 +5193,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6380931285633616727, guid: 6d57488068ac04c3687339da22ce7788, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 948.7228
+      value: 946.75415
       objectReference: {fileID: 0}
     - target: {fileID: 6380931285633616727, guid: 6d57488068ac04c3687339da22ce7788, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -5765,7 +5765,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6381520258049565530, guid: 6d57488068ac04c3687339da22ce7788, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1490.9205
+      value: 1486.9833
       objectReference: {fileID: 0}
     - target: {fileID: 6381520258049565530, guid: 6d57488068ac04c3687339da22ce7788, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -5785,7 +5785,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6381520258204677122, guid: 6d57488068ac04c3687339da22ce7788, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1324.7107
+      value: 1320.7734
       objectReference: {fileID: 0}
     - target: {fileID: 6381520258204677122, guid: 6d57488068ac04c3687339da22ce7788, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -5805,7 +5805,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6381520258653393076, guid: 6d57488068ac04c3687339da22ce7788, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 1182.9956
+      value: 1179.0583
       objectReference: {fileID: 0}
     - target: {fileID: 6381520258653393076, guid: 6d57488068ac04c3687339da22ce7788, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -5825,7 +5825,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6381520258991830574, guid: 6d57488068ac04c3687339da22ce7788, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 947.89557
+      value: 943.9583
       objectReference: {fileID: 0}
     - target: {fileID: 6381520258991830574, guid: 6d57488068ac04c3687339da22ce7788, type: 3}
       propertyPath: m_AnchoredPosition.y

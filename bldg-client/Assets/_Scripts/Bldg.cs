@@ -75,6 +75,7 @@ namespace Models
 		public string flr;
 		public string flr_url;
 		public string updated_at;
+		public int nesting_depth;
 	}
 
 	[Serializable]
