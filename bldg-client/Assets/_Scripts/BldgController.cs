@@ -458,15 +458,10 @@ public class BldgController : MonoBehaviour
 	}
 
 	void switchAddress(string address) {
-		if (address.ToLower() != "g") {
-			reloadContainerBldg();
-			updateFloorSign ();
-		}
-
 		addressToLocation.Clear();
 		addressStack.Clear();
 		Debug.Log("Cleared address stack. Size: " + addressStack.Count);
-		addressStack.Push(address);
+		addressStack.Push("g");
 		loadNextBldgInStack();
 	}
 
@@ -656,14 +651,18 @@ public class BldgController : MonoBehaviour
 					// TODO: if the current bldg is in depth larger than 0, get the location of the container bldg
 					float originX = floorStartX;
 					float originZ = floorStartZ;
-					float scaleFactor = 1F;
+					float scaleDiffBetweenPlayerAndBldg = crc.resident.nesting_depth - b.nesting_depth;
+					float scaleFactor = (float)Math.Pow(10F, scaleDiffBetweenPlayerAndBldg);
 
-					if (b.nesting_depth > 1) {
+					if (b.nesting_depth > 0) {
 						string parentContainerAddress = AddressUtils.getBldg(b.flr);
 						Vector3 parentLocation = addressToLocation.TryGetValue(parentContainerAddress, out parentLocation) ? parentLocation : new Vector3(0, 0, 0);
 						originX = parentLocation.x;
 						originZ = parentLocation.z;
-						scaleFactor = 0.1F;
+						Debug.Log("Setting origin to " + originX + ", " + originZ + " and scale to " + scaleFactor);
+					}
+					else {
+						Debug.Log("Setting origin to " + originX + ", " + originZ);
 					}
 
 					// TODO change size based on nesting depth
@@ -678,6 +677,7 @@ public class BldgController : MonoBehaviour
 					GameObject prefab = getPrefabByEntityClass(b.entity_type);
 					GameObject bldgClone = null;
 					try {
+						Debug.Log("~~~~~~~ About to instantiate " + b.name + " at " + baseline + " with scale " + scaleFactor + " and prefab " + prefab.name);
 						bldgClone = (GameObject) Instantiate(prefab, baseline, Quaternion.identity);
 						bldgClone.tag = "Building";
 						if (b.nesting_depth > 1) {
@@ -709,7 +709,7 @@ public class BldgController : MonoBehaviour
 						loadNextBldgInStack();
 					}
 				}
-				// Debug.Log("Rendered " + count + " bldgs");
+				Debug.Log("Rendered " + count + " bldgs");
 			});
 	}
 

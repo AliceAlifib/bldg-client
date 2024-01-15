@@ -10,7 +10,8 @@ using Utils;
 public class GlobalConfig : ScriptableObjectSingleton<GlobalConfig>
 {   
 
-    public string bldgServer = "https://api.w2m.site";
+    //public string bldgServer = "https://api.w2m.site";
+    public string bldgServer = "https://localhost:4443";
     public string residentsBasePath = "/v1/residents";
 	public string bldgsBasePath = "/v1/bldgs";
 	public string roadsBasePath = "/v1/roads";

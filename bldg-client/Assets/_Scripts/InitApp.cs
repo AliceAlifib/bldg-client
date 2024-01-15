@@ -84,20 +84,6 @@ public class InitApp : MonoBehaviour
         currentAddress.text = rsdt.flr_url;
     }
 
-    private bool loadBldgSceneIfNeeded() {
-        // check whether we need to load the bldg_flr scene
-        CurrentResidentController crc = CurrentResidentController.Instance;
-        if (crc.resident.flr != "g") {
-            Scene scene = SceneManager.GetActiveScene();
-            if (scene.name != "bldg_flr") {
-                SceneManager.LoadScene("bldg_flr");
-                return true;
-            }
-        }
-        return false;
-    }
-
-
     private void animateOutOfLogin() {
         Scene scene = SceneManager.GetActiveScene();
         try {
@@ -152,8 +138,6 @@ public class InitApp : MonoBehaviour
             Debug.LogError("This cannot happen - OnLogin called but current resident isn't initialized yet");
             return;
         }
-
-        if (loadBldgSceneIfNeeded()) return;
 
         initCurrentResidentUI(crc.resident);
 
