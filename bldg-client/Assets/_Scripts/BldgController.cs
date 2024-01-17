@@ -655,6 +655,7 @@ public class BldgController : MonoBehaviour
 					float scaleFactor = (float)Math.Pow(10F, scaleDiffBetweenPlayerAndBldg);
 
 					if (b.nesting_depth > 0) {
+						Debug.Log("~~~~ " + b.name + " is in " + b.flr + " and rendered in scale " + scaleFactor);
 						string parentContainerAddress = AddressUtils.getBldg(b.flr);
 						Vector3 parentLocation = addressToLocation.TryGetValue(parentContainerAddress, out parentLocation) ? parentLocation : new Vector3(0, 0, 0);
 						originX = parentLocation.x;
@@ -680,9 +681,9 @@ public class BldgController : MonoBehaviour
 						Debug.Log("~~~~~~~ About to instantiate " + b.name + " at " + baseline + " with scale " + scaleFactor + " and prefab " + prefab.name);
 						bldgClone = (GameObject) Instantiate(prefab, baseline, Quaternion.identity);
 						bldgClone.tag = "Building";
-						if (b.nesting_depth > 1) {
-							bldgClone.transform.localScale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
-						}
+						//if (b.nesting_depth > 0) {
+						bldgClone.transform.localScale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
+						//}
 						BldgObject bldgObject = bldgClone.AddComponent<BldgObject>();
 						bldgObject.initialize(b, this);
 						renderModelData(bldgClone, b);
@@ -755,9 +756,7 @@ public class BldgController : MonoBehaviour
 					// if it's the current user, skip
 					if (r.alias == currentRsdt.alias) continue;
 
-					Debug.Log("~~~~~~~~~~ checking RECEIVED resident " + r.id);
 					bool newResident = !idsCache.ContainsKey(r.id);
-					Debug.Log("~~~~~~~~~~ RECEIVED resident is NOT in cache? " + newResident);
 
 					bool movedResident = false;
 					bool changedResident = false;
@@ -765,8 +764,6 @@ public class BldgController : MonoBehaviour
 						movedResident = addrCache[r.id] != r.location;
 						changedResident = lastUpdateCache[r.id] != r.updated_at;
 					}
-					Debug.Log("~~~~~~~~~~ RECEIVED moved? " + movedResident);
-					Debug.Log("~~~~~~~~~~ RECEIVED changed? " + changedResident);
 
 					if (!(newResident || movedResident || changedResident)) {
 						// don't draw existing or unmoved or unchanged residents
