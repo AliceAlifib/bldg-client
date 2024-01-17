@@ -50,9 +50,10 @@ public class InitApp : MonoBehaviour
 
     private void initCurrentResidentUI(Resident rsdt) {
         float height = 0.5F;
-        if (rsdt.flr != "g") {
-            height = 2.5F;  // bldg is larger when inside a bldg, so floor is higher
-        }
+        // TODO: remove the following
+        // if (rsdt.flr != "g") {
+        //     height = 2.5F;  // bldg is larger when inside a bldg, so floor is higher
+        // }
         Vector3 baseline = new Vector3(floorStartX, height, floorStartZ);	// WHY? if you set the correct Y, some images fail to display
         baseline.x += rsdt.x;
         baseline.z += rsdt.y;

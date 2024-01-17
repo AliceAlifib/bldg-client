@@ -622,6 +622,10 @@ public class BldgController : MonoBehaviour
 						bldgChatController.AddHistoricMessages(b.previous_messages);
 					}
 
+					float scaleDiffBetweenPlayerAndBldg = crc.resident.nesting_depth - b.nesting_depth;
+					float scaleFactor = (float)Math.Pow(10F, scaleDiffBetweenPlayerAndBldg);
+
+
 					float height = 0F;
 					float flr0Height = 0F;
 					//if (address != "g") {
@@ -651,8 +655,6 @@ public class BldgController : MonoBehaviour
 					// TODO: if the current bldg is in depth larger than 0, get the location of the container bldg
 					float originX = floorStartX;
 					float originZ = floorStartZ;
-					float scaleDiffBetweenPlayerAndBldg = crc.resident.nesting_depth - b.nesting_depth;
-					float scaleFactor = (float)Math.Pow(10F, scaleDiffBetweenPlayerAndBldg);
 
 					if (b.nesting_depth > 0) {
 						Debug.Log("~~~~ " + b.name + " is in " + b.flr + " and rendered in scale " + scaleFactor);
@@ -708,6 +710,10 @@ public class BldgController : MonoBehaviour
 					EventManager.Instance.TriggerEvent("EntitiesChanged");
 					if (addressStack.Count > 0) {
 						loadNextBldgInStack();
+					}
+					else {
+						Debug.Log("~~~~~ Done loading all bldgs - next move player to current location");
+						
 					}
 				}
 				Debug.Log("Rendered " + count + " bldgs");

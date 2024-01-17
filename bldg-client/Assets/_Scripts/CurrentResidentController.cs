@@ -139,7 +139,6 @@ public class CurrentResidentController : ScriptableObjectSingleton<CurrentReside
             resident.flr = actionResponse.data.flr;
             resident.flr_url = actionResponse.data.flr_url;
             resident.nesting_depth = actionResponse.data.nesting_depth;
-            Debug.Log("~~~~~ received nesting depth as " + resident.nesting_depth);
             SceneManager.LoadScene("g");
         }).Catch(err => {
             Debug.Log("Enter bldg action failed - " + err.Message);        
@@ -162,12 +161,9 @@ public class CurrentResidentController : ScriptableObjectSingleton<CurrentReside
             resident.y = actionResponse.data.y;
             resident.flr = actionResponse.data.flr;
             resident.flr_url = actionResponse.data.flr_url;
+            resident.nesting_depth = actionResponse.data.nesting_depth;
             Scene scene = SceneManager.GetActiveScene();
-            if (resident.flr == "g" && scene.name != "g") {
-                SceneManager.LoadScene("g");
-            } else {
-                SceneManager.LoadScene("bldg_flr");
-            }
+            SceneManager.LoadScene("g");
         }).Catch(err => {
             Debug.Log("Enter bldg action failed - " + err.Message);        
         });
