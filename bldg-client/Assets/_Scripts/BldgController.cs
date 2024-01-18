@@ -717,9 +717,17 @@ public class BldgController : MonoBehaviour
 							isRenderingCompleteEventFired = true;
 							Debug.Log("~~~~~ Done loading all bldgs - next move player to current location");
 							// calculate the location of the current player
-						
-							// set the location of the player on the crc
-
+							try {
+								string playerFlr = crc.resident.flr;
+								string playerAddress = AddressUtils.getBldg(playerFlr);
+								float playerFlr0Height = addressToFlr0Height[playerAddress] * 10F;	// flr is part of the container bldg, which is 10x scale
+								float playerFlrHeight = playerFlr0Height + addressToFlrHeight[playerAddress] * 10F;
+								Vector3 playerLocation = addressToLocation[playerAddress];
+								// set the location of the player on the crc
+								crc.currentRenderedPosition = new Vector3(playerLocation.x, playerFlrHeight, playerLocation.z);
+							} catch (Exception e) {
+								Debug.Log("Failed to move player to current location: " + e.ToString());
+							}
 							EventManager.Instance.TriggerEvent("RenderingComplete");
 						}
 					}

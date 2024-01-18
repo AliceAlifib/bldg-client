@@ -49,13 +49,13 @@ public class InitApp : MonoBehaviour
         startTimedEvent.StartIEnumerator();
     }
 
-    private void initCurrentResidentUI(Resident rsdt) {
-        float height = 0.5F;
-        // TODO: remove the following
-        // if (rsdt.flr != "g") {
-        //     height = 2.5F;  // bldg is larger when inside a bldg, so floor is higher
-        // }
-        Vector3 baseline = new Vector3(floorStartX, height, floorStartZ);	// WHY? if you set the correct Y, some images fail to display
+    private void initCurrentResidentUI() {
+
+        CurrentResidentController crc = CurrentResidentController.Instance;
+
+        Resident rsdt = crc.resident;
+
+        Vector3 baseline = crc.currentRenderedPosition;
         baseline.x += rsdt.x;
         baseline.z += rsdt.y;
         Debug.Log("Rendering current resident " + rsdt.alias + " at " + baseline.x + ", " + baseline.z);
@@ -174,7 +174,7 @@ public class InitApp : MonoBehaviour
 
     private void OnRenderingComplete() {
         Debug.Log("On Rendering Complete");
-        initCurrentResidentUI(CurrentResidentController.Instance.resident);
+        initCurrentResidentUI();
     }
 
     public static void startWalking()

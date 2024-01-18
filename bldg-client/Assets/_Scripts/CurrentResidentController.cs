@@ -23,6 +23,8 @@ public class CurrentResidentController : ScriptableObjectSingleton<CurrentReside
 
     DateTime lastActionTime;
 
+    public Vector3 currentRenderedPosition;
+
 
     public void initialize(Resident model) {
         Debug.Log("CRC initialized with " + model.alias);
