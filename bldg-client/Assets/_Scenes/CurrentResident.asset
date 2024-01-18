@@ -14,15 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resident:
     alias: dibau
-    direction: 120
+    direction: 80
     email: dibaunaumh@gmail.com
     home_bldg: g/b(17,24)/l0/b(4,5)
     id: 1
     text: 
     is_online: 1
-    location: g/b(126,27)/l1/b(8,40)
+    location: g/b(16,5)
     name: Udi Bauman
     previous_messages:
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g","say_flr_url":"g","say_location":"g","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      purpose bldg with name ffff and summary ffff","say_time":1699647584224}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g","say_flr_url":"g","say_location":"g","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/connect
+      between fromteal and gould","say_time":1699647475576}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g","say_flr_url":"g","say_location":"g","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      purpose bldg with name serhii and summary some purpose bldg","say_time":1699646592655}'
     - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g","say_flr_url":"g","say_location":"g/b(13,5)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
       action bldg with name action1 and summary some action","say_time":1697006432584}'
     - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g","say_flr_url":"g","say_location":"g/b(50,21)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
@@ -113,13 +119,13 @@ MonoBehaviour:
       time is it?","say_time":1685542957698}'
     - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(16,92)/l0","say_flr_url":"g/fromTeal/l0","say_location":"g/b(16,92)/l0/b(18,25)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"what
       time is it?","say_time":1685542909840}'
-    session_id: 143866b5-f33a-43d3-9508-964c593860ff
-    x: 8
-    y: 40
-    flr: g/b(126,27)/l1
-    flr_url: g/da-prob/l1
-    updated_at: 2023-11-08T03:15:52
-    nesting_depth: 1
+    session_id: 976942e9-60d6-4ab5-aedd-1370ccd15207
+    x: 16
+    y: 5
+    flr: g
+    flr_url: g
+    updated_at: 2024-01-10T04:03:02
+    nesting_depth: 0
   initialized: 1
   ACTION_SEND_INTERVAL: 200
   inFlyingMode: 0

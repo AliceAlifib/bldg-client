@@ -38,6 +38,7 @@ public class InternalBldgDoorKnob : MonoBehaviour
     }
 
     void OnMouseDown() {
+        Debug.Log("~~~~~ Clicked on internal bldg door knob");
         if (bldgName == "") {
             getContainerBldgDetails();
         }

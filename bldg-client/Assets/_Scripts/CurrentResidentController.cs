@@ -162,10 +162,9 @@ public class CurrentResidentController : ScriptableObjectSingleton<CurrentReside
             resident.flr = actionResponse.data.flr;
             resident.flr_url = actionResponse.data.flr_url;
             resident.nesting_depth = actionResponse.data.nesting_depth;
-            Scene scene = SceneManager.GetActiveScene();
             SceneManager.LoadScene("g");
         }).Catch(err => {
-            Debug.Log("Enter bldg action failed - " + err.Message);        
+            Debug.Log("Exit bldg action failed - " + err.Message);        
         });
     }
 
