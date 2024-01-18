@@ -81,6 +81,7 @@ public class BldgController : MonoBehaviour
 	BldgObject relocatedObject; 
 	bool isShowingContextMenu = false;
 	bool isReloadingInLoop = false;
+	bool isRenderingCompleteEventFired = false;
 
     // public ChaseCamera camera;
 
@@ -712,8 +713,15 @@ public class BldgController : MonoBehaviour
 						loadNextBldgInStack();
 					}
 					else {
-						Debug.Log("~~~~~ Done loading all bldgs - next move player to current location");
+						if (!isRenderingCompleteEventFired) {
+							isRenderingCompleteEventFired = true;
+							Debug.Log("~~~~~ Done loading all bldgs - next move player to current location");
+							// calculate the location of the current player
 						
+							// set the location of the player on the crc
+
+							EventManager.Instance.TriggerEvent("RenderingComplete");
+						}
 					}
 				}
 				Debug.Log("Rendered " + count + " bldgs");

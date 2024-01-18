@@ -38,6 +38,7 @@ public class InitApp : MonoBehaviour
     private UnityAction onLogin;
     private UnityAction onQuickActions;
     private UnityAction onPromoteOrDemote;
+    private UnityAction onRenderingComplete;
 	
     // TODO move to shared constants/configuration file
 	public float floorStartX = -8f;
@@ -102,11 +103,13 @@ public class InitApp : MonoBehaviour
         onLogin = new UnityAction(OnLogin);
         onQuickActions = new UnityAction(OnQuickActions);
         onPromoteOrDemote = new UnityAction(OnPromoteOrDemote);
+        onRenderingComplete = new UnityAction(OnRenderingComplete);
         EventManager.Instance.StartListening("SwitchToFlying", onFlying);
         EventManager.Instance.StartListening("SwitchToWalking", onWalking);
         EventManager.Instance.StartListening("LoginSuccessful", onLogin);
         EventManager.Instance.StartListening("OpenQuickActions", onQuickActions);
         EventManager.Instance.StartListening("PromoteOrDemote", onPromoteOrDemote);
+        EventManager.Instance.StartListening("RenderingComplete", onRenderingComplete);
     }
 
 
@@ -117,7 +120,7 @@ public class InitApp : MonoBehaviour
 
             startLoadingAnimation();
 
-            initCurrentResidentUI(crc.resident);
+            //initCurrentResidentUI(crc.resident);
 
             loadBldgs(crc.resident);
 
@@ -140,7 +143,7 @@ public class InitApp : MonoBehaviour
             return;
         }
 
-        initCurrentResidentUI(crc.resident);
+        // initCurrentResidentUI(crc.resident);
 
         loadBldgs(crc.resident);
 
@@ -167,6 +170,11 @@ public class InitApp : MonoBehaviour
 
     private void OnPromoteOrDemote() {
         bldgController.reloadContainerBldg();
+    }
+
+    private void OnRenderingComplete() {
+        Debug.Log("On Rendering Complete");
+        initCurrentResidentUI(CurrentResidentController.Instance.resident);
     }
 
     public static void startWalking()
