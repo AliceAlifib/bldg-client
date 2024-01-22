@@ -88,7 +88,6 @@ public class BldgController : MonoBehaviour
     string currentAddress;
 	string currentFlr;
 
-	Resident currentRsdt;
 	BldgChatController bldgChatController;
 
 	Stack<string> addressStack = new Stack<string>();
@@ -218,11 +217,7 @@ public class BldgController : MonoBehaviour
 		}
 		bldgChatController.SetResidentController(rsdtController);
 	}
-
-	public void SetCurrentResident(Resident rsdt) {
-		currentRsdt = rsdt;
-	}
-
+	
 	void showContextMenu() {
 		isShowingContextMenu = true;
 		contextMenu.gameObject.SetActive(true);
@@ -738,6 +733,7 @@ public class BldgController : MonoBehaviour
 	}
 
 	void reloadResidents(string address) {
+		CurrentResidentController crc = CurrentResidentController.Instance;
 		var idsCache = new Dictionary<int, GameObject>();
 		var addrCache = new Dictionary<int, string>();
 		var lastUpdateCache = new Dictionary<int, string>();
@@ -777,7 +773,7 @@ public class BldgController : MonoBehaviour
 					}
 
 					// if it's the current user, skip
-					if (r.alias == currentRsdt.alias) {
+					if (r.alias == crc.resident.alias) {
 						Debug.Log("~~~~~~~~~~~~ Skipping rendering current user");
 						continue;
 					} else {

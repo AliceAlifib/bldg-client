@@ -125,11 +125,6 @@ public class InitApp : MonoBehaviour
 
             startLoadingAnimation();
 
-            // when loading residents, the current player is skipped, 
-            // so we need to inform the bldg-controller who the current player is
-            // TODO simplify this
-            bldgController.SetCurrentResident(crc.resident);
-
             loadBldgs(crc.resident);
 
             setLabelsInUI(crc.resident);
@@ -150,11 +145,6 @@ public class InitApp : MonoBehaviour
             Debug.LogError("This cannot happen - OnLogin called but current resident isn't initialized yet");
             return;
         }
-        
-        // when loading residents, the current player is skipped, 
-        // so we need to inform the bldg-controller who the current player is
-        // TODO simplify this
-        bldgController.SetCurrentResident(crc.resident);
 
         loadBldgs(crc.resident);
 
