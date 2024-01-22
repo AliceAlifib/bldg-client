@@ -55,7 +55,13 @@ public class InitApp : MonoBehaviour
 
         Resident rsdt = crc.resident;
 
-        Vector3 baseline = crc.currentRenderedPosition;
+        Vector3 baseline;
+        // TODO figure out how to simplify this
+        if (crc.resident.flr == "g") {
+            baseline = new Vector3(floorStartX, 0.5F, floorStartZ);
+        } else {
+            baseline = crc.currentRenderedPosition;
+        }
         baseline.x += rsdt.x;
         baseline.z += rsdt.y;
         Debug.Log("Rendering current resident " + rsdt.alias + " at " + baseline.x + ", " + baseline.z);
@@ -72,7 +78,6 @@ public class InitApp : MonoBehaviour
         rsdtObject.initialize(rsdt, true);
 
         // RETURN: replace all of these with event handling on bldg controller
-        bldgController.SetCurrentResident(rsdt);
         bldgController.SetCurrentResidentController(rsdtObject);
     }
 
@@ -120,7 +125,10 @@ public class InitApp : MonoBehaviour
 
             startLoadingAnimation();
 
-            //initCurrentResidentUI(crc.resident);
+            // when loading residents, the current player is skipped, 
+            // so we need to inform the bldg-controller who the current player is
+            // TODO simplify this
+            bldgController.SetCurrentResident(crc.resident);
 
             loadBldgs(crc.resident);
 
@@ -142,8 +150,11 @@ public class InitApp : MonoBehaviour
             Debug.LogError("This cannot happen - OnLogin called but current resident isn't initialized yet");
             return;
         }
-
-        // initCurrentResidentUI(crc.resident);
+        
+        // when loading residents, the current player is skipped, 
+        // so we need to inform the bldg-controller who the current player is
+        // TODO simplify this
+        bldgController.SetCurrentResident(crc.resident);
 
         loadBldgs(crc.resident);
 
@@ -173,7 +184,7 @@ public class InitApp : MonoBehaviour
     }
 
     private void OnRenderingComplete() {
-        Debug.Log("On Rendering Complete");
+        Debug.Log("~~~~~~~~~~~ On Rendering Complete");
         initCurrentResidentUI();
     }
 

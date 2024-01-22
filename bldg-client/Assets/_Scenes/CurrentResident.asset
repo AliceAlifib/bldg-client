@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resident:
     alias: dibau
-    direction: 80
+    direction: 180
     email: dibaunaumh@gmail.com
     home_bldg: g/b(17,24)/l0/b(4,5)
     id: 1
     text: 
     is_online: 1
-    location: g/b(16,5)
+    location: g/b(60,11)/l1/b(8,40)
     name: Udi Bauman
     previous_messages:
     - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g","say_flr_url":"g","say_location":"g","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
@@ -119,14 +119,15 @@ MonoBehaviour:
       time is it?","say_time":1685542957698}'
     - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(16,92)/l0","say_flr_url":"g/fromTeal/l0","say_location":"g/b(16,92)/l0/b(18,25)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"what
       time is it?","say_time":1685542909840}'
-    session_id: 976942e9-60d6-4ab5-aedd-1370ccd15207
-    x: 16
-    y: 5
-    flr: g
-    flr_url: g
-    updated_at: 2024-01-10T04:03:02
-    nesting_depth: 0
+    session_id: 6beed0cb-d806-40ba-b588-66e572d818ea
+    x: 8
+    y: 40
+    flr: g/b(60,11)/l1
+    flr_url: g/da-2nd-prob/l1
+    updated_at: 2024-01-17T04:31:41
+    nesting_depth: 1
   initialized: 1
   ACTION_SEND_INTERVAL: 200
   inFlyingMode: 0
   flyingHigh: 0
+  currentRenderedPosition: {x: 172, y: 7, z: 27}

@@ -719,6 +719,7 @@ public class BldgController : MonoBehaviour
 							// calculate the location of the current player
 							try {
 								string playerFlr = crc.resident.flr;
+								Debug.Log("~~~~~ Player is in " + playerFlr);
 								string playerAddress = AddressUtils.getBldg(playerFlr);
 								float playerFlr0Height = addressToFlr0Height[playerAddress] * 10F;	// flr is part of the container bldg, which is 10x scale
 								float playerFlrHeight = playerFlr0Height + addressToFlrHeight[playerAddress] * 10F;
@@ -776,7 +777,12 @@ public class BldgController : MonoBehaviour
 					}
 
 					// if it's the current user, skip
-					if (r.alias == currentRsdt.alias) continue;
+					if (r.alias == currentRsdt.alias) {
+						Debug.Log("~~~~~~~~~~~~ Skipping rendering current user");
+						continue;
+					} else {
+						Debug.Log("~~~~~~~~~~~~ Rendering resident " + r.alias);
+					}
 
 					bool newResident = !idsCache.ContainsKey(r.id);
 
