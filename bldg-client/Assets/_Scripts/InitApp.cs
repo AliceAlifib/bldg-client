@@ -59,11 +59,11 @@ public class InitApp : MonoBehaviour
         // TODO figure out how to simplify this
         if (crc.resident.flr == "g") {
             baseline = new Vector3(floorStartX, 0.5F, floorStartZ);
+            baseline.x += rsdt.x;
+            baseline.z += rsdt.y;
         } else {
             baseline = crc.currentRenderedPosition;
         }
-        baseline.x += rsdt.x;
-        baseline.z += rsdt.y;
         Debug.Log("Rendering current resident " + rsdt.alias + " at " + baseline.x + ", " + baseline.z);
         Quaternion qrt = Quaternion.identity;
         qrt.eulerAngles = new Vector3(0, rsdt.direction, 0);
