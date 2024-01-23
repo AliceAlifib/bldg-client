@@ -717,7 +717,8 @@ public class BldgController : MonoBehaviour
 								Debug.Log("~~~~~ Player is in " + playerFlr);
 								string playerAddress = AddressUtils.getBldg(playerFlr);
 								float playerFlr0Height = addressToFlr0Height[playerAddress] * 10F;	// flr is part of the container bldg, which is 10x scale
-								float playerFlrHeight = playerFlr0Height + addressToFlrHeight[playerAddress] * 10F + 0.8F;	// add also the initial resident standing height
+								int playerFlrLevel = AddressUtils.getFlrLevel(playerFlr);
+								float playerFlrHeight = playerFlr0Height + addressToFlrHeight[playerAddress] * playerFlrLevel * 10F + 0.8F;	// add also the initial resident standing height. TODO fix this
 								Vector3 playerLocation = addressToLocation[playerAddress];
 								// set the location of the player on the crc
 								crc.currentRenderedPosition = new Vector3(playerLocation.x, playerFlrHeight, playerLocation.z);
