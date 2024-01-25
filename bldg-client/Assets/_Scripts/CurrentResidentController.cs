@@ -55,7 +55,28 @@ public class CurrentResidentController : ScriptableObjectSingleton<CurrentReside
     }
     
 
+    public string getResidentLocation() {
+        if (resident.nesting_depth == 0) {
+            return resident.location;
+        }
+        else {
+            string logical_location = resident.location;
+            float scale_factor = Math.Pow(10f, resident.nesting_depth);
 
+            // TODO apply scale based on nesting depth
+            resident.x /= scale_factor;
+            resident.y /= scale_factor;
+
+            // TODO subtract the location of the container bldg
+            
+
+            // TODO update location with translated coords
+
+            return logical_location;
+        }
+    }
+
+    // TODO is this still in use?
     public void SendTurnAction(TurnAction action) {
         // call the act API
         Debug.Log("Invoking resident turn action for resident " + resident.email);
@@ -73,6 +94,7 @@ public class CurrentResidentController : ScriptableObjectSingleton<CurrentReside
 
 
 
+    // TODO is this still in use?
     public void SendMoveAction(MoveAction action) {
         DateTime currentTime = DateTime.Now;
         float timeSinceLastActionSend = currentTime.Subtract(lastActionTime).Milliseconds;  
@@ -102,6 +124,7 @@ public class CurrentResidentController : ScriptableObjectSingleton<CurrentReside
         }
     }
 
+    // TODO is this still in use?
     public void SendEnterBldgAction(EnterBldgAction action) {
         // call the act API
         GlobalConfig conf = GlobalConfig.Instance;
@@ -124,6 +147,7 @@ public class CurrentResidentController : ScriptableObjectSingleton<CurrentReside
         });
     }
 
+    // TODO is this still in use?
   public void SendEnterBldgFlrAction(EnterBldgFlrAction action) {
         // call the act API
         GlobalConfig conf = GlobalConfig.Instance;
@@ -147,6 +171,7 @@ public class CurrentResidentController : ScriptableObjectSingleton<CurrentReside
         });
     }
 
+    // TODO is this still in use?
     public void SendExitBldgAction(ExitBldgAction action) {
         // call the act API
         GlobalConfig conf = GlobalConfig.Instance;
@@ -170,6 +195,7 @@ public class CurrentResidentController : ScriptableObjectSingleton<CurrentReside
         });
     }
 
+    // TODO is this still in use?
     public void SendSayAction(SayAction action) {
         // Debug.Log("~~~~~~~~~~~~~~ Sending say action from " + action.resident_email + " and text: " + action.say_text);
         GlobalConfig conf = GlobalConfig.Instance;

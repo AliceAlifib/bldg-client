@@ -69,7 +69,7 @@ public class ChatUIController2 : MonoBehaviour {
             say_text = text,
             say_flr = crc.resident.flr,
             say_flr_url = crc.resident.flr_url,
-            say_location = crc.resident.location,
+            say_location = crc.getResidentLocation(),
             say_mimetype = "text/plain",
             say_recipient = null
         };
@@ -81,7 +81,7 @@ public class ChatUIController2 : MonoBehaviour {
         // Debug.Log("~~~~~~~~~~~~~~~ SendChatMessage for " + act.say_text);
         // TODO extract recipient
         CurrentResidentController crc = CurrentResidentController.Instance;
-        // Debug.Log("Found a rsdt controller");
+        Debug.Log("~~~~~ Sending chat message from " + crc.resident.alias + " at " + act.say_location + " ~~~~~~~~");
         crc.SendSayAction(act);
     }
     

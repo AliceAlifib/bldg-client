@@ -199,8 +199,18 @@ public class ResidentController : MonoBehaviour
             //Debug.Log("Moved " + xValue + ", " + zValue);
             // Send action to bldg server
             // TODO calculate new location
-            int moveX = (int)(transform.position.x - floorStartX);
-            int moveY = (int)(transform.position.z - floorStartZ);
+
+            Debug.Log("~~~~ About to send move action for " + resident.alias + " ~~~~~~~~");
+            Debug.Log("~~~~ Current location: " + resident.location);
+            Debug.Log("~~~~ Current transform.position: " + transform.position);
+
+            float playerPositionX = transform.position.x;
+            float playerPositionZ = transform.position.z;
+
+            int moveX = (int)(playerPositionX - floorStartX);
+            int moveY = (int)(playerPositionZ - floorStartZ);
+            Debug.Log("~~~~ Move x: " + moveX + ", y: " + moveY);
+
             string moveLocation = AddressUtils.updateLocation(resident.location, moveX, moveY);
             currentResident.SendMoveAction(new MoveAction {
                 resident_email = resident.email,
