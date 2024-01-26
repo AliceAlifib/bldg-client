@@ -25,6 +25,8 @@ public class CurrentResidentController : ScriptableObjectSingleton<CurrentReside
 
     public Vector3 currentRenderedPosition;
 
+    public Vector3 containerRenderedPosition;
+
 
     public void initialize(Resident model) {
         Debug.Log("CRC initialized with " + model.alias);
@@ -55,23 +57,28 @@ public class CurrentResidentController : ScriptableObjectSingleton<CurrentReside
     }
     
 
-    public string getResidentLocation() {
+    public string getResidentRelativeLocation() {
         if (resident.nesting_depth == 0) {
             return resident.location;
         }
         else {
             string logical_location = resident.location;
-            float scale_factor = Math.Pow(10f, resident.nesting_depth);
+            Debug.Log("~~~~~~~~~~~~~~~ physical_location = " + logical_location);
+            float scale_factor = (float)Math.Pow(10f, resident.nesting_depth);
 
             // TODO apply scale based on nesting depth
-            resident.x /= scale_factor;
-            resident.y /= scale_factor;
+            int logical_x = (int)(resident.x / scale_factor);
+            int logical_y = (int)(resident.y / scale_factor);
 
             // TODO subtract the location of the container bldg
-            
+            if (containerRenderedPosition != null) {
+                logical_x = (int)(logical_x - containerRenderedPosition.x);
+                logical_y = (int)(logical_y - containerRenderedPosition.z);
+            }
 
             // TODO update location with translated coords
-
+            logical_location = AddressUtils.updateLocation(logical_location, logical_x, logical_y);
+            Debug.Log("~~~~~~~~~~~~~~~ logical_location = " + logical_location);
             return logical_location;
         }
     }

@@ -722,6 +722,7 @@ public class BldgController : MonoBehaviour
 								Vector3 playerLocation = addressToLocation[playerAddress];
 								// set the location of the player on the crc
 								crc.currentRenderedPosition = new Vector3(playerLocation.x, playerFlrHeight, playerLocation.z);
+								crc.containerRenderedPosition = addressToLocation[playerAddress];
 							} catch (Exception e) {
 								Debug.Log("Failed to move player to current location: " + e.ToString());
 							}

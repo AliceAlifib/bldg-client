@@ -69,7 +69,7 @@ public class ChatUIController2 : MonoBehaviour {
             say_text = text,
             say_flr = crc.resident.flr,
             say_flr_url = crc.resident.flr_url,
-            say_location = crc.getResidentLocation(),
+            say_location = crc.getResidentRelativeLocation(),
             say_mimetype = "text/plain",
             say_recipient = null
         };
