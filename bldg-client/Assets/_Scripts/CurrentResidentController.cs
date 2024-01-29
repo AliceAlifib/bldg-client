@@ -63,21 +63,25 @@ public class CurrentResidentController : ScriptableObjectSingleton<CurrentReside
         }
         else {
             string logical_location = resident.location;
+            float logical_x = resident.x;
+            float logical_y = resident.y;
+
             Debug.Log("~~~~~~~~~~~~~~~ physical_location = " + logical_location);
             float scale_factor = (float)Math.Pow(10f, resident.nesting_depth);
 
-            // TODO apply scale based on nesting depth
-            int logical_x = (int)(resident.x / scale_factor);
-            int logical_y = (int)(resident.y / scale_factor);
-
-            // TODO subtract the location of the container bldg
+            // subtract the location of the container bldg
             if (containerRenderedPosition != null) {
-                logical_x = (int)(logical_x - containerRenderedPosition.x);
-                logical_y = (int)(logical_y - containerRenderedPosition.z);
+                logical_x = logical_x - containerRenderedPosition.x;
+                logical_y = logical_y - containerRenderedPosition.z;
             }
 
-            // TODO update location with translated coords
-            logical_location = AddressUtils.updateLocation(logical_location, logical_x, logical_y);
+            // apply scale based on nesting depth
+            logical_x = resident.x / scale_factor;
+            logical_y = resident.y / scale_factor;
+
+
+            // update location with translated coords
+            logical_location = AddressUtils.updateLocation(logical_location, (int)logical_x, (int)logical_y);
             Debug.Log("~~~~~~~~~~~~~~~ logical_location = " + logical_location);
             return logical_location;
         }
