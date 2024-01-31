@@ -75,11 +75,6 @@ public class CurrentResidentController : ScriptableObjectSingleton<CurrentReside
                 logical_y = logical_y - containerRenderedPosition.z;
             }
 
-            // apply scale based on nesting depth
-            // logical_x = resident.x / scale_factor;
-            // logical_y = resident.y / scale_factor;
-
-
             // update location with translated coords
             logical_location = AddressUtils.updateLocation(logical_location, (int)logical_x, (int)logical_y);
             Debug.Log("~~~~~~~~~~~~~~~ logical_location = " + logical_location);
@@ -193,7 +188,7 @@ public class CurrentResidentController : ScriptableObjectSingleton<CurrentReside
         RestClient.Post<ActionResponse>(req).Then(actionResponse => {
             Debug.Log("Action sent, received new location");
             Debug.Log(actionResponse.data.location);
-            Debug.Log("Received resident location as " + actionResponse.data.x + ", " + actionResponse.data.y);
+            Debug.Log("~~~~~~~~ Received resident location as " + actionResponse.data.x + ", " + actionResponse.data.y);
             resident.location = actionResponse.data.location;
             resident.x = actionResponse.data.x;
             resident.y = actionResponse.data.y;

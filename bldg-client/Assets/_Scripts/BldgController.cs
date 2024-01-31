@@ -667,8 +667,8 @@ public class BldgController : MonoBehaviour
 					// TODO change size based on nesting depth
 
 					Vector3 baseline = new Vector3(originX, height, originZ);	// WHY? if you set the correct Y, some images fail to display
-					baseline.x += b.x * scaleFactor * 0.3F;
-					baseline.z += b.y * scaleFactor * 0.3F;
+					baseline.x += b.x * scaleFactor;
+					baseline.z += b.y * scaleFactor;
 					if (b.is_composite) {
 						// store the rendered locations of container bldgs 
 						addressToLocation.Add(b.address, baseline);
@@ -695,6 +695,9 @@ public class BldgController : MonoBehaviour
 						addressStack.Push(b.address + "/l0");	// TODO need to somehow go over all floors
 						addressStack.Push(b.address + "/l1");
 						addressStack.Push(b.address + "/l2");
+						addressStack.Push(b.address + "/l3");
+						addressStack.Push(b.address + "/l4");
+						addressStack.Push(b.address + "/l5");
 						Debug.Log("Address stack size: " + addressStack.Count);
 					}
 					
