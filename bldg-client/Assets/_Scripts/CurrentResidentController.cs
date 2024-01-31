@@ -76,8 +76,8 @@ public class CurrentResidentController : ScriptableObjectSingleton<CurrentReside
             }
 
             // apply scale based on nesting depth
-            logical_x = resident.x / scale_factor;
-            logical_y = resident.y / scale_factor;
+            // logical_x = resident.x / scale_factor;
+            // logical_y = resident.y / scale_factor;
 
 
             // update location with translated coords
