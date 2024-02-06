@@ -66,11 +66,12 @@ public class CurrentResidentController : ScriptableObjectSingleton<CurrentReside
             float logical_x = resident.x;
             float logical_y = resident.y;
 
-            Debug.Log("~~~~~~~~~~~~~~~ physical_location = " + logical_location);
-            float scale_factor = (float)Math.Pow(10f, resident.nesting_depth);
+            Debug.Log("~~~~~~~~~~~~~~~ physical_location = " + logical_location + " (" + logical_x + ", " + logical_y + ")");
+            // float scale_factor = (float)Math.Pow(10f, resident.nesting_depth);
 
             // subtract the location of the container bldg
             if (containerRenderedPosition != null) {
+                Debug.Log("~~~~~~~~~~~~~~~ Subtracting containerRenderedPosition: (" + containerRenderedPosition.x + ", " + containerRenderedPosition.z + ")");
                 logical_x = logical_x - containerRenderedPosition.x;
                 logical_y = logical_y - containerRenderedPosition.z;
             }

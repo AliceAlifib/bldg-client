@@ -73,6 +73,7 @@ public class ChatUIController2 : MonoBehaviour {
             say_mimetype = "text/plain",
             say_recipient = null
         };
+        Debug.Log("~~~~~~~~~ Created chat message for " + act.say_speaker + " at " + act.say_location);
         return act;
     }
 
