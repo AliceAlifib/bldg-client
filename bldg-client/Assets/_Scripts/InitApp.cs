@@ -58,7 +58,7 @@ public class InitApp : MonoBehaviour
         Vector3 baseline;
         // TODO figure out how to simplify this
         if (crc.resident.flr == "g") {
-            baseline = new Vector3(floorStartX, 0.5F, floorStartZ);
+            baseline = new Vector3(0, 0.5F, 0);
             baseline.x += rsdt.x;
             baseline.z += rsdt.y;
         } else {

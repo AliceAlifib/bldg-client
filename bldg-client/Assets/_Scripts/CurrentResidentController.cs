@@ -76,6 +76,10 @@ public class CurrentResidentController : ScriptableObjectSingleton<CurrentReside
                 logical_y = logical_y - containerRenderedPosition.z;
             }
 
+            // experimental
+            logical_x -= 7;
+            logical_y -= 4;
+
             // update location with translated coords
             logical_location = AddressUtils.updateLocation(logical_location, (int)logical_x, (int)logical_y);
             Debug.Log("~~~~~~~~~~~~~~~ logical_location = " + logical_location);

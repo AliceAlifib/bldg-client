@@ -222,6 +222,9 @@ public class ResidentController : MonoBehaviour
             resident.location = moveLocation;
             resident.x = moveX;
             resident.y = moveY;
+
+            string logical_location = currentResident.getResidentRelativeLocation();
+            Debug.Log("~~~~ Logical location on move: " + logical_location);
         }
     }
 
