@@ -77,6 +77,7 @@ public class CurrentResidentController : ScriptableObjectSingleton<CurrentReside
             }
 
             // experimental
+            // TODO understand the root cause of the offset
             logical_x -= 7;
             logical_y -= 4;
 

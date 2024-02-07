@@ -14,15 +14,101 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resident:
     alias: dibau
-    direction: 220
+    direction: 0
     email: dibaunaumh@gmail.com
     home_bldg: g/b(17,24)/l0/b(4,5)
     id: 1
     text: 
     is_online: 1
-    location: g/b(126,7)/l0/b(5,-2)
+    location: g/b(126,29)
     name: Udi Bauman
     previous_messages:
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l0","say_flr_url":"g/da-prob/l0","say_location":"g/b(126,27)/l0/b(5,2)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      problem bldg with name da-nested-prob and summary da nested problem","say_time":1707280103627}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l0","say_flr_url":"g/da-prob/l0","say_location":"g/b(126,27)/l0/b(-5,9)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      action bldg with name a1 and summary a1-at-l0","say_time":1707280063377}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l0","say_flr_url":"g/da-prob/l0","say_location":"g/b(126,27)/l0/b(0,1)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      decision bldg with name d1-l0 and summary d1-at-l0","say_time":1707280006384}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l0","say_flr_url":"g/da-prob/l0","say_location":"g/b(126,27)/l0/b(8,2)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      milestone bldg with name m2 and summary m2","say_time":1707279937107}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l0","say_flr_url":"g/da-prob/l0","say_location":"g/b(126,27)/l0/b(0,6)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      milestone bldg with name m1 and summary m1","say_time":1707279820014}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l1","say_flr_url":"g/da-prob/l1","say_location":"g/b(126,27)/l1/b(-2,-1)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      purpose bldg with name pu and summary pu","say_time":1707279757043}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l1","say_flr_url":"g/da-prob/l1","say_location":"g/b(126,27)/l1/b(7,2)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      decision bldg with name d-allblues and summary dec-all-blues","say_time":1707279623277}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l1","say_flr_url":"g/da-prob/l1","say_location":"g/b(126,27)/l1/b(-5,5)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      decision bldg with name d-killjoy and summary d-killjoy","say_time":1707279335040}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l1","say_flr_url":"g/da-prob/l1","say_location":"g/b(126,27)/l1/b(-9,-4)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      decision bldg with name dec-9-4 and summary decision on (-9,-4)","say_time":1707278162651}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l1","say_flr_url":"g/da-prob/l1","say_location":"g/b(126,27)/l1/b(-5,12)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      decision bldg with name des-part11 and summary decision on partita 11","say_time":1707277676706}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l1","say_flr_url":"g/da-prob/l1","say_location":"g/b(126,27)/l1/b(0,2)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      decision bldg with name decdec4 and summary decizhka4","say_time":1707192476790}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l1","say_flr_url":"g/da-prob/l1","say_location":"g/b(126,27)/l1/b(1,7)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      decision bldg with name decdec3 and summary deczish3","say_time":1707192174657}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l1","say_flr_url":"g/da-prob/l1","say_location":"g/b(126,27)/l1/b(6,6)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      decision bldg with name dedec2 and summary decz2","say_time":1707191246188}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l1","say_flr_url":"g/da-prob/l1","say_location":"g/b(126,27)/l1/b(6,8)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      decision bldg with name decdec1 and summary decdec1","say_time":1707191028971}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l1","say_flr_url":"g/da-prob/l1","say_location":"g/b(126,27)/l1/b(14,8)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      purpose bldg with name pur2 and summary pur2pose","say_time":1707189749076}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l1","say_flr_url":"g/da-prob/l1","say_location":"g/b(126,27)/l1/b(2,8)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      purpose bldg with name pu1 and summary pur1pose","say_time":1707151995215}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l1","say_flr_url":"g/da-prob/l1","say_location":"g/b(126,27)/l1/b(-4,8)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      decision bldg with name d6n4 and summary d4","say_time":1706675250478}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l1","say_flr_url":"g/da-prob/l1","say_location":"g/b(126,27)/l1/b(9,10)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      decision bldg with name d6n3 and summary d3","say_time":1706675221169}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l1","say_flr_url":"g/da-prob/l1","say_location":"g/b(126,27)/l1/b(1,9)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      decision bldg with name d6n2 and summary d2","say_time":1706675188001}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l1","say_flr_url":"g/da-prob/l1","say_location":"g/b(126,27)/l1/b(4,9)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      decision bldg with name d6n1 and summary d1","say_time":1706675143533}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l0","say_flr_url":"g/da-prob/l0","say_location":"g/b(126,27)/l0/b(3,10)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      sales bldg with name s3s1 and summary some sales in l0","say_time":1706670533339}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l0","say_flr_url":"g/da-prob/l0","say_location":"g/b(126,27)/l0/b(11,9)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      decision bldg with name d6n5 and summary daf5iveszcion","say_time":1706670498888}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l1","say_flr_url":"g/da-prob/l1","say_location":"g/b(126,27)/l1/b(13,6)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      decision bldg with name d6n4 and summary da4scion","say_time":1706670360715}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l1","say_flr_url":"g/da-prob/l1","say_location":"g/b(126,27)/l1/b(9,8)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      decision bldg with name d6n3 and summary deszcionn3","say_time":1706670329474}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l1","say_flr_url":"g/da-prob/l1","say_location":"g/b(126,27)/l1/b(3,8)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      decision bldg with name d6n2 and summary anothecisjon","say_time":1706670259406}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l1","say_flr_url":"g/da-prob/l1","say_location":"g/b(126,27)/l1/b(2,8)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      decision bldg with name d6n1 and summary deschizion1","say_time":1706670186401}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l1","say_flr_url":"g/da-prob/l1","say_location":"g/b(126,27)/l1/b(1,8)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      product bldg with name p5t1 and summary prodyct 1","say_time":1706670130394}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l1","say_flr_url":"g/da-prob/l1","say_location":"g/b(126,27)/l1/b(11,9)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      purpose bldg with name purpur and summary song","say_time":1706670023762}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l1","say_flr_url":"g/da-prob/l1","say_location":"g/b(126,27)/l1/b(37,8)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      capability bldg with name c8y and summary kepabillyti","say_time":1706543244761}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l1","say_flr_url":"g/da-prob/l1","say_location":"g/b(126,27)/l1/b(37,8)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      decision bldg with name d6n and summary a deciszion","say_time":1706543127849}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l1","say_flr_url":"g/da-prob/l1","say_location":"g/b(126,27)/l1/b(38,8)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      costs bldg with name c3s and summary coastts","say_time":1706542805489}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l1","say_flr_url":"g/da-prob/l1","say_location":"g/b(126,27)/l1/b(38,8)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      product bldg with name p5t and summary prroduckt","say_time":1706542742828}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l1","say_flr_url":"g/da-prob/l1","say_location":"g/b(126,27)/l1/b(38,8)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      product bldg with name p5t and summary productt","say_time":1706542166634}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l1","say_flr_url":"g/da-prob/l1","say_location":"g/b(126,27)/l1/b(-333,-67)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      milestone bldg with name m1 and summary milestone 1","say_time":1706287178711}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l1","say_flr_url":"g/da-prob/l1","say_location":"g/b(126,27)/l1/b(-370,-71)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"Hello","say_time":1706286981214}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g","say_flr_url":"g","say_location":"g/b(38,9)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"dwa","say_time":1706201345885}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g","say_flr_url":"g","say_location":"g/b(38,9)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"blah","say_time":1706201098126}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g","say_flr_url":"g","say_location":"g/b(38,9)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"da!","say_time":1706201047205}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l1","say_flr_url":"g/da-prob/l1","say_location":"g/b(126,27)/l1/b(383,84)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      goal bldg with name g2-da-prob and summary goal2 - the prob","say_time":1705980772716}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g","say_flr_url":"g","say_location":"g/b(40,43)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      solution bldg with name thsolu and summary the solu","say_time":1705978527427}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g","say_flr_url":"g","say_location":"g/b(50,16)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      goal bldg with name go and summary go?","say_time":1705978436216}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l0","say_flr_url":"g/da-prob/l0","say_location":"g/b(126,27)/l0/b(380,83)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      action bldg with name sol0 and summary solutionn 0","say_time":1705978108929}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l0","say_flr_url":"g/da-prob/l0","say_location":"g/b(126,27)/l0/b(372,84)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      service bldg with name ssse and summary ssse!","say_time":1705976892510}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g","say_flr_url":"g","say_location":"g/b(20,16)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      goal bldg with name ggg and summary ggggooooaall","say_time":1705975510614}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l1","say_flr_url":"g/da-prob/l1","say_location":"g/b(126,27)/l1/b(181,35)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      goal bldg with name the-problem-goal and summary a goal - solve the problem","say_time":1705975276968}'
     - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g","say_flr_url":"g","say_location":"g","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
       purpose bldg with name ffff and summary ffff","say_time":1699647584224}'
     - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g","say_flr_url":"g","say_location":"g","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/connect
@@ -119,16 +205,16 @@ MonoBehaviour:
       time is it?","say_time":1685542957698}'
     - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(16,92)/l0","say_flr_url":"g/fromTeal/l0","say_location":"g/b(16,92)/l0/b(18,25)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"what
       time is it?","say_time":1685542909840}'
-    session_id: 6beed0cb-d806-40ba-b588-66e572d818ea
-    x: 5
-    y: -2
-    flr: g/b(126,7)/l0
-    flr_url: g/da-prob/l0
-    updated_at: 2024-01-21T23:28:31
-    nesting_depth: 1
+    session_id: ce569d1f-6e6f-47f9-8e53-3a27230abff7
+    x: 126
+    y: 29
+    flr: g
+    flr_url: g
+    updated_at: 2024-02-07T04:29:40
+    nesting_depth: 2
   initialized: 1
   ACTION_SEND_INTERVAL: 200
   inFlyingMode: 0
   flyingHigh: 0
-  currentRenderedPosition: {x: 172, y: 7.8, z: 27}
-  containerRenderedPosition: {x: 172, y: 0, z: 27}
+  currentRenderedPosition: {x: 1312, y: 0.8, z: 304}
+  containerRenderedPosition: {x: 1312, y: 0, z: 304}
