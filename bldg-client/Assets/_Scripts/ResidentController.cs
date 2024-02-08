@@ -71,6 +71,9 @@ public class ResidentController : MonoBehaviour
         if (crc.resident.flr == "g")
             return GROUND_HEIGHT;
         else
+            if (crc.currentRenderedPosition != null) {
+                return crc.currentRenderedPosition.y;
+            }
             return INDOOR_GROUND_HEIGHT;
     }
 
