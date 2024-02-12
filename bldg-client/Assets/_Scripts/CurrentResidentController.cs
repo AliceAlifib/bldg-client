@@ -14,6 +14,9 @@ public class CurrentResidentController : ScriptableObjectSingleton<CurrentReside
     public Resident resident;
 
     public bool initialized = false;
+
+    public bool justSignedIn = true;
+
     public DateTime lastLoginTime = DateTime.Today.AddYears(-1);
 
     public float ACTION_SEND_INTERVAL = 200;  // Milliseconds

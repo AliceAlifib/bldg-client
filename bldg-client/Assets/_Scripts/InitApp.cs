@@ -57,7 +57,7 @@ public class InitApp : MonoBehaviour
 
         Vector3 baseline;
         // TODO figure out how to simplify this
-        if (crc.resident.flr == "g") {
+        if (crc.resident.flr == "g" || crc.justSignedIn) {
             baseline = new Vector3(floorStartX, 0.5F, floorStartZ);
             baseline.x += rsdt.x;
             baseline.z += rsdt.y;
@@ -79,6 +79,8 @@ public class InitApp : MonoBehaviour
 
         // RETURN: replace all of these with event handling on bldg controller
         bldgController.SetCurrentResidentController(rsdtObject);
+
+        crc.justSignedIn = false;
     }
 
     private void loadBldgs(Resident rsdt) {
