@@ -669,6 +669,7 @@ public class BldgController : MonoBehaviour
 					Vector3 baseline = new Vector3(originX, height, originZ);	// WHY? if you set the correct Y, some images fail to display
 					baseline.x += b.x * scaleFactor;
 					baseline.z += b.y * scaleFactor;
+					
 					if (b.is_composite) {
 						// store the rendered locations of container bldgs 
 						addressToLocation.Add(b.address, baseline);
@@ -713,29 +714,33 @@ public class BldgController : MonoBehaviour
 					else {
 						if (!isRenderingCompleteEventFired) {
 							isRenderingCompleteEventFired = true;
-							Debug.Log("~~~~~ Done loading all bldgs - next move player to current location");
-							// calculate the location of the current player
-							try {
-								string playerFlr = crc.resident.flr;
-								Debug.Log("~~~~~ Player is in " + playerFlr);
-								string playerAddress = AddressUtils.getBldg(playerFlr);
-								float playerFlr0Height = addressToFlr0Height[playerAddress] * 10F;	// flr is part of the container bldg, which is 10x scale
-								int playerFlrLevel = AddressUtils.getFlrLevel(playerFlr);
-								float playerFlrHeight = playerFlr0Height + addressToFlrHeight[playerAddress] * playerFlrLevel * 10F + 0.8F;	// add also the initial resident standing height. TODO fix this
-								// TODO this shouldn't be fixed - user may have moved around, signed-off & signed-in again
-								Vector3 playerLocation = addressToLocation[playerAddress];
-								// set the location of the player on the crc
-								crc.currentRenderedPosition = new Vector3(playerLocation.x, playerFlrHeight, playerLocation.z);
-								crc.containerRenderedPosition = addressToLocation[playerAddress];
-							} catch (Exception e) {
-								Debug.Log("Failed to move player to current location: " + e.ToString());
-							}
-							EventManager.Instance.TriggerEvent("RenderingComplete");
+							Invoke("RenderingComplete", 0.01f);
 						}
 					}
 				}
 				Debug.Log("Rendered " + count + " bldgs");
 			});
+	}
+
+	void RenderingComplete() {
+		Debug.Log("~~~~~ Done loading all bldgs - next move player to current location");
+		// calculate the location of the current player
+		CurrentResidentController crc = CurrentResidentController.Instance; 
+		try {
+			string playerFlr = crc.resident.flr;
+			string playerAddress = AddressUtils.getBldg(playerFlr);
+			float playerFlr0Height = addressToFlr0Height[playerAddress] * 10F;	// flr is part of the container bldg, which is 10x scale
+			int playerFlrLevel = AddressUtils.getFlrLevel(playerFlr);
+			float playerFlrHeight = playerFlr0Height + addressToFlrHeight[playerAddress] * playerFlrLevel * 10F + 0.8F;	// add also the initial resident standing height. TODO fix this
+			// TODO this shouldn't be fixed - user may have moved around, signed-off & signed-in again
+			Vector3 playerLocation = addressToLocation[playerAddress];
+			// set the location of the player on the crc
+			crc.currentRenderedPosition = new Vector3(playerLocation.x, playerFlrHeight, playerLocation.z);
+			crc.containerRenderedPosition = addressToLocation[playerAddress];
+		} catch (Exception e) {
+			Debug.Log("Failed to move player to current location: " + e.ToString());
+		}
+		EventManager.Instance.TriggerEvent("RenderingComplete");
 	}
 
 	void reloadResidents(string address) {

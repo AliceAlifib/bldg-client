@@ -14,15 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resident:
     alias: dibau
-    direction: 0
+    direction: 320
     email: dibaunaumh@gmail.com
     home_bldg: g/b(17,24)/l0/b(4,5)
     id: 1
     text: 
     is_online: 1
-    location: g/b(126,29)
+    location: g/b(126,30)
     name: Udi Bauman
     previous_messages:
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(132,31)/l0","say_flr_url":"g/prob2/l0","say_location":"g/b(132,31)/l0/b(-3,6)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      team bldg with name team1 and summary team1","say_time":1707320359045}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(132,31)/l0","say_flr_url":"g/prob2/l0","say_location":"g/b(132,31)/l0/b(7,2)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      action bldg with name act-l0 and summary act-at-l0","say_time":1707320325203}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(132,31)/l1","say_flr_url":"g/prob2/l1","say_location":"g/b(132,31)/l1/b(1,4)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      decision bldg with name d-elephant and summary dec-elephant","say_time":1707320187586}'
+    - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g","say_flr_url":"g","say_location":"g/b(132,35)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
+      problem bldg with name prob2 and summary prob2","say_time":1707280670000}'
     - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l0","say_flr_url":"g/da-prob/l0","say_location":"g/b(126,27)/l0/b(5,2)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
       problem bldg with name da-nested-prob and summary da nested problem","say_time":1707280103627}'
     - '{"action_type":"SAY","bldg_url":"","resident_email":"dibaunaumh@gmail.com","say_flr":"g/b(126,27)/l0","say_flr_url":"g/da-prob/l0","say_location":"g/b(126,27)/l0/b(-5,9)","say_mimetype":"text/plain","say_recipient":"","say_speaker":"dibau","say_text":"/create
@@ -207,14 +215,14 @@ MonoBehaviour:
       time is it?","say_time":1685542909840}'
     session_id: ce569d1f-6e6f-47f9-8e53-3a27230abff7
     x: 126
-    y: 29
+    y: 30
     flr: g
     flr_url: g
-    updated_at: 2024-02-07T04:29:40
-    nesting_depth: 2
+    updated_at: 2024-02-07T15:55:09
+    nesting_depth: 0
   initialized: 1
   ACTION_SEND_INTERVAL: 200
   inFlyingMode: 0
   flyingHigh: 0
-  currentRenderedPosition: {x: 1312, y: 0.8, z: 304}
-  containerRenderedPosition: {x: 1312, y: 0, z: 304}
+  currentRenderedPosition: {x: 1252, y: 1.1, z: 264}
+  containerRenderedPosition: {x: 1252, y: 0, z: 264}
