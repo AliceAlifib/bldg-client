@@ -95,6 +95,8 @@ public class BldgController : MonoBehaviour
 	IDictionary<string, float> addressToFlrHeight = new Dictionary<string, float>();
 	IDictionary<string, float> addressToFlr0Height = new Dictionary<string, float>();
 
+	IDictionary<string, float> addressToRenderedY = new Dictionary<string, float>();
+	
 
 	// RETURN:
 	//private UnityAction onLogin;
@@ -632,17 +634,27 @@ public class BldgController : MonoBehaviour
 					Debug.Log("level of " + b.name + " is " + flrLevel);
 					Debug.Log("flrAddress of " + b.name + " is " + flrAddress);
 					float flrHeight = 0.385F * scaleFactor * 10F;	// flr is part of the container bldg, which is 10x scale
-					Debug.Log("Checking flr height for " + flrAddress);
+					Debug.Log(b.name + ": Checking flr height for " + flrAddress);
 					if (addressToFlrHeight.ContainsKey(flrAddress)) {
-						Debug.Log("Found flr height for " + flrAddress + ": " + addressToFlrHeight[flrAddress]);
+						Debug.Log(b.name + ": Found flr height for " + flrAddress + ": " + addressToFlrHeight[flrAddress]);
 						flrHeight = addressToFlrHeight[flrAddress] * scaleFactor * 10F;	// flr is part of the container bldg, which is 10x scale
+					} else {
+						Debug.Log(b.name + ": OH NO! could not find flr height for " + flrAddress);
 					}
 					if (addressToFlr0Height.ContainsKey(flrAddress)) {
-						Debug.Log("Found flr0 height for " + flrAddress + ": " + addressToFlr0Height[flrAddress]);
+						Debug.Log(b.name + ": Found flr0 height for " + flrAddress + ": " + addressToFlr0Height[flrAddress]);
 						flr0Height = addressToFlr0Height[flrAddress] * scaleFactor * 10F;	// flr is part of the container bldg, which is 10x scale
+					} else {
+						Debug.Log(b.name + ": OH NO! could not find flr0 height for " + flrAddress);
+					}
+					if (addressToRenderedY.ContainsKey(flrAddress)) {
+						Debug.Log(b.name + ": Found rendered Y for " + flrAddress + ": " + addressToRenderedY[flrAddress]);
+						height += addressToRenderedY[flrAddress];
+					} else {
+						Debug.Log(b.name + ": OH NO! could not find rendered Y for " + flrAddress);
 					}
 					if (flrLevel > 0) {
-						height = flrHeight * flrLevel;
+						height += flrHeight * flrLevel;
 					}
 					if (flr0Height > 0) {
 						height += flr0Height;
@@ -658,7 +670,7 @@ public class BldgController : MonoBehaviour
 						Vector3 parentLocation = addressToLocation.TryGetValue(parentContainerAddress, out parentLocation) ? parentLocation : new Vector3(0, 0, 0);
 						originX = parentLocation.x;
 						originZ = parentLocation.z;
-						Debug.Log("Setting origin to " + originX + ", " + originZ + " and scale to " + scaleFactor);
+						Debug.Log(b.name + ": Setting origin to " + originX + ", " + originZ + " and scale to " + scaleFactor);
 					}
 					else {
 						Debug.Log("Setting origin to " + originX + ", " + originZ);
@@ -669,7 +681,7 @@ public class BldgController : MonoBehaviour
 					Vector3 baseline = new Vector3(originX, height, originZ);	// WHY? if you set the correct Y, some images fail to display
 					baseline.x += b.x * scaleFactor;
 					baseline.z += b.y * scaleFactor;
-					
+					addressToRenderedY[b.address] = baseline.y;
 					if (b.is_composite) {
 						// store the rendered locations of container bldgs 
 						addressToLocation.Add(b.address, baseline);
@@ -680,9 +692,7 @@ public class BldgController : MonoBehaviour
 						Debug.Log("~~~~~~~ About to instantiate " + b.name + " at " + baseline + " with scale " + scaleFactor + " and prefab " + prefab.name);
 						bldgClone = (GameObject) Instantiate(prefab, baseline, Quaternion.identity);
 						bldgClone.tag = "Building";
-						//if (b.nesting_depth > 0) {
 						bldgClone.transform.localScale = new Vector3(scaleFactor, scaleFactor, scaleFactor);
-						//}
 						BldgObject bldgObject = bldgClone.AddComponent<BldgObject>();
 						bldgObject.initialize(b, this);
 						renderModelData(bldgClone, b);
@@ -714,7 +724,7 @@ public class BldgController : MonoBehaviour
 					else {
 						if (!isRenderingCompleteEventFired) {
 							isRenderingCompleteEventFired = true;
-							Invoke("RenderingComplete", 0.01f);
+							Invoke("RenderingComplete", 1f);
 						}
 					}
 				}
@@ -727,11 +737,12 @@ public class BldgController : MonoBehaviour
 		// calculate the location of the current player
 		CurrentResidentController crc = CurrentResidentController.Instance; 
 		try {
+			float scaleFactor = (float)Math.Pow(10F, crc.resident.nesting_depth);
 			string playerFlr = crc.resident.flr;
 			string playerAddress = AddressUtils.getBldg(playerFlr);
-			float playerFlr0Height = addressToFlr0Height[playerAddress] * 10F;	// flr is part of the container bldg, which is 10x scale
+			float playerFlr0Height = addressToFlr0Height[playerAddress] * scaleFactor;	// flr is part of the container bldg, which is 10x scale
 			int playerFlrLevel = AddressUtils.getFlrLevel(playerFlr);
-			float playerFlrHeight = playerFlr0Height + addressToFlrHeight[playerAddress] * playerFlrLevel * 10F + 0.8F;	// add also the initial resident standing height. TODO fix this
+			float playerFlrHeight = playerFlr0Height + addressToFlrHeight[playerAddress] * playerFlrLevel * scaleFactor + 0.08F * scaleFactor;	// add also the initial resident standing height. TODO fix this
 			// TODO this shouldn't be fixed - user may have moved around, signed-off & signed-in again
 			Vector3 playerLocation = addressToLocation[playerAddress];
 			// set the location of the player on the crc
