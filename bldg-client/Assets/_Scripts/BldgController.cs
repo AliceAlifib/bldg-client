@@ -738,15 +738,34 @@ public class BldgController : MonoBehaviour
 		CurrentResidentController crc = CurrentResidentController.Instance; 
 		try {
 			float scaleFactor = (float)Math.Pow(10F, crc.resident.nesting_depth);
+			Debug.Log("~~~~~ Player container is in scale " + scaleFactor);
+
 			string playerFlr = crc.resident.flr;
 			string playerAddress = AddressUtils.getBldg(playerFlr);
+			float height = 0F;
+
+			// get the rendered Y of the container bldg
+			float containerY = addressToRenderedY[playerAddress];
+			Debug.Log("~~~~~ Container Y for " + playerAddress + " is " + containerY);
+			height += containerY;
+
 			float playerFlr0Height = addressToFlr0Height[playerAddress] * scaleFactor;	// flr is part of the container bldg, which is 10x scale
+			Debug.Log("~~~~~ Player flr0 height for " + playerAddress + " is " + playerFlr0Height);
+			height += playerFlr0Height;
+
 			int playerFlrLevel = AddressUtils.getFlrLevel(playerFlr);
-			float playerFlrHeight = playerFlr0Height + addressToFlrHeight[playerAddress] * playerFlrLevel * scaleFactor + 0.08F * scaleFactor;	// add also the initial resident standing height. TODO fix this
+			Debug.Log("~~~~~ Player flr level for " + playerFlr + " is " + playerFlrLevel);
+
+			float flrHeight = addressToFlrHeight[playerAddress] * scaleFactor;
+			Debug.Log("~~~~~ Player flr height for " + playerAddress + " is " + flrHeight);
+
+			height += flrHeight * playerFlrLevel;	// add also the initial resident standing height. TODO fix this
+			Debug.Log("~~~~~ Calculated player height is " + height);
+			
 			// TODO this shouldn't be fixed - user may have moved around, signed-off & signed-in again
 			Vector3 playerLocation = addressToLocation[playerAddress];
 			// set the location of the player on the crc
-			crc.currentRenderedPosition = new Vector3(playerLocation.x, playerFlrHeight, playerLocation.z);
+			crc.currentRenderedPosition = new Vector3(playerLocation.x, height, playerLocation.z);
 			crc.containerRenderedPosition = addressToLocation[playerAddress];
 		} catch (Exception e) {
 			Debug.Log("Failed to move player to current location: " + e.ToString());

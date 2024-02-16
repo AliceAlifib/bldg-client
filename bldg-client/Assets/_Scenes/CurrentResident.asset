@@ -225,5 +225,5 @@ MonoBehaviour:
   ACTION_SEND_INTERVAL: 200
   inFlyingMode: 0
   flyingHigh: 0
-  currentRenderedPosition: {x: 11562, y: 11, z: 2804}
-  containerRenderedPosition: {x: 11562, y: 73, z: 2804}
+  currentRenderedPosition: {x: 1142, y: 0.073, z: 274}
+  containerRenderedPosition: {x: 1142, y: 0, z: 274}
