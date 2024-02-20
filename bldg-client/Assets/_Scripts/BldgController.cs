@@ -737,7 +737,7 @@ public class BldgController : MonoBehaviour
 		// calculate the location of the current player
 		CurrentResidentController crc = CurrentResidentController.Instance; 
 		try {
-			float scaleFactor = (float)Math.Pow(10F, crc.resident.nesting_depth);
+			float scaleFactor = 10F;
 			Debug.Log("~~~~~ Player container is in scale " + scaleFactor);
 
 			string playerFlr = crc.resident.flr;
