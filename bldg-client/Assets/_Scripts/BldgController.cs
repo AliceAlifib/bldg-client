@@ -633,7 +633,7 @@ public class BldgController : MonoBehaviour
 					string flrAddress = AddressUtils.getBldg(b.flr);
 					Debug.Log("level of " + b.name + " is " + flrLevel);
 					Debug.Log("flrAddress of " + b.name + " is " + flrAddress);
-					float flrHeight = 0.385F * scaleFactor * 10F;	// flr is part of the container bldg, which is 10x scale
+					float flrHeight = scaleFactor * 10F;	// flr is part of the container bldg, which is 10x scale
 					Debug.Log(b.name + ": Checking flr height for " + flrAddress);
 					if (addressToFlrHeight.ContainsKey(flrAddress)) {
 						Debug.Log(b.name + ": Found flr height for " + flrAddress + ": " + addressToFlrHeight[flrAddress]);
