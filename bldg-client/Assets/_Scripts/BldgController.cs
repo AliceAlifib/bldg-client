@@ -742,7 +742,7 @@ public class BldgController : MonoBehaviour
 
 			string playerFlr = crc.resident.flr;
 			string playerAddress = AddressUtils.getBldg(playerFlr);
-			float height = 0F;
+			float height = 0.05F * scaleFactor;		// initial player height
 
 			// get the rendered Y of the container bldg
 			float containerY = addressToRenderedY[playerAddress];
