@@ -371,7 +371,7 @@ public class BldgController : MonoBehaviour
 	// }
 
 	public void SetAddress(string address) {
-		Debug.Log("SetAddress -> " + address);
+		Debug.Log("~~~~~ SetAddress -> " + address);
 		currentAddress = address;
 		AddressChanged();
 	}
@@ -458,15 +458,17 @@ public class BldgController : MonoBehaviour
 	void switchAddress(string address) {
 		addressToLocation.Clear();
 		addressStack.Clear();
-		Debug.Log("Cleared address stack. Size: " + addressStack.Count);
+		Debug.Log("~~~ addressStack: Cleared address stack. Size: " + addressStack.Count);
 		addressStack.Push("g");
+		Debug.Log("~~~ addressStack: g added. Size: " + addressStack.Count);
 		loadNextBldgInStack();
 	}
 
 	void loadNextBldgInStack() {
 		while (addressStack.Count > 0) {
 			string address = addressStack.Pop();
-			Debug.Log("Loading everything in address: " + address);
+			Debug.Log("~~~ addressStack: popped " + address + ". Size: " + addressStack.Count);
+			Debug.Log("~~~ addressStack: Loading everything in address: " + address);
 			reloadBuildings(address);
 			reloadResidents(address);
 			reloadRoads(address);
@@ -579,14 +581,13 @@ public class BldgController : MonoBehaviour
 			}
 		}
 		// escape the address
-		address = Uri.EscapeDataString(address);
-		Debug.Log("address escaped to: " + address);
+		string escaped_address = Uri.EscapeDataString(address);
 		GlobalConfig conf = GlobalConfig.Instance;
-        string url = conf.bldgServer + conf.bldgsBasePath + "/look/" + address;
-		// Debug.Log("Loading buildings from: " + url);
+        string url = conf.bldgServer + conf.bldgsBasePath + "/look/" + escaped_address;
 		RequestHelper req = RestUtils.createRequest("GET", url);
 		RestClient.GetArray<Bldg>(req).Then(res =>
 			{
+				Debug.Log("~~~~ Loaded data for address: " + address);
 				int count = 0;
 				foreach (Bldg b in res) {
 					count += 1;
@@ -603,6 +604,7 @@ public class BldgController : MonoBehaviour
 					}
 					if (!(newBldg || movedBldg || changedBldg)) {
 						// don't draw existing or unmoved or unchanged residents
+						Debug.Log("~~~~ Skipping rendering existing or unmoved or unchanged bldg: " + b.name);
 						continue;
 					}
 					if (movedBldg || changedBldg) {
@@ -702,14 +704,19 @@ public class BldgController : MonoBehaviour
 					}
 					
 					if (b.is_composite) {
-						Debug.Log("Adding " + b.address + " to address stack");
+						Debug.Log("~~~ addressStack: because " + b.name + " is composite, adding " + b.address + "/l0 to address stack");
+						Debug.Log("Adding " + b.address + "/l0 to address stack");
 						addressStack.Push(b.address + "/l0");	// TODO need to somehow go over all floors
+						Debug.Log("Adding " + b.address + "/l1 to address stack");
 						addressStack.Push(b.address + "/l1");
+						Debug.Log("Adding " + b.address + "/l2 to address stack");
 						addressStack.Push(b.address + "/l2");
 						addressStack.Push(b.address + "/l3");
 						addressStack.Push(b.address + "/l4");
 						addressStack.Push(b.address + "/l5");
-						Debug.Log("Address stack size: " + addressStack.Count);
+						Debug.Log("~~~ addressStack: size: " + addressStack.Count);
+					} else {
+						Debug.Log("~~~ addressStack: because " + b.name + " is not composite, not adding to address stack");
 					}
 					
 					//Debug.Log("About to call renderAuthorPicture on bldg " + count);
@@ -717,18 +724,21 @@ public class BldgController : MonoBehaviour
 					// controller.renderMainPicture();
 				}
 				if (dataChanged) {
+					Debug.Log("~~~ addressStack: data changed, so triggering EntitiesChanged event");
 					EventManager.Instance.TriggerEvent("EntitiesChanged");
 					if (addressStack.Count > 0) {
+						Debug.Log("~~~ addressStack: stack count > 0, so loading next bldg in stack");
 						loadNextBldgInStack();
 					}
 					else {
+						Debug.Log("~~~ addressStack: stack count == 0, so triggering RenderingComplete event");
 						if (!isRenderingCompleteEventFired) {
 							isRenderingCompleteEventFired = true;
 							Invoke("RenderingComplete", 1f);
 						}
 					}
 				}
-				Debug.Log("Rendered " + count + " bldgs");
+				Debug.Log("~~~~~~~ Rendered " + count + " bldgs for address " + address);
 			});
 	}
 
@@ -981,7 +991,7 @@ public class BldgController : MonoBehaviour
 	
 
 	public void reloadContainerBldg() {
-		// Debug.Log("~~~~~ Reloading container bldg");
+		Debug.Log("~~~~~ Reloading container bldg");
 
 		// check whether the container bldg already has a model object
 		// Debug.Log("~~~~~ Currently inside scene " + SceneManager.GetActiveScene().name);

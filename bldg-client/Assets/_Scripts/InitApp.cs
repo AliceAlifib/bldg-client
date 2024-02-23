@@ -84,6 +84,7 @@ public class InitApp : MonoBehaviour
     }
 
     private void loadBldgs(Resident rsdt) {
+        Debug.Log("~~~~~ loadBldgs is calling ~~ SetAddress for " + rsdt.alias + " at " + rsdt.flr);
         bldgController.SetAddress(rsdt.flr);        
     }
 

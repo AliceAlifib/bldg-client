@@ -210,18 +210,17 @@ public class CurrentResidentController : ScriptableObjectSingleton<CurrentReside
         });
     }
 
-    // TODO is this still in use?
     public void SendSayAction(SayAction action) {
-        // Debug.Log("~~~~~~~~~~~~~~ Sending say action from " + action.resident_email + " and text: " + action.say_text);
+        Debug.Log("~~~~~~~~~~~~~~ Say Action sent from " + action.resident_email + " and text: " + action.say_text);
         GlobalConfig conf = GlobalConfig.Instance;
         string url = conf.bldgServer + conf.residentsBasePath + "/act";
         Debug.Log("url = " + url);
         // invoke act API
         RequestHelper req = RestUtils.createRequest("POST", url, action);
         RestClient.Post<ActionResponse>(req).Then(actionResponse => {
-            // Debug.Log("~~~~~~~ Say Action sent & response received");
+            Debug.Log("~~~~~~~ Say Action sent & response received");
             if (action.say_text.StartsWith("/promote") || action.say_text.StartsWith("/demote")) {
-                // Debug.Log("~~~~~~~~~~~~~~~ this was a promote/demote command - sending event to reload container bldg");
+                Debug.Log("~~~~~~~~~~~~~~~ Say Action - this was a promote/demote command - sending event to reload container bldg");
                 // need to reload the container bldg
                 EventManager.Instance.TriggerEvent("PromoteOrDemote");
             }
