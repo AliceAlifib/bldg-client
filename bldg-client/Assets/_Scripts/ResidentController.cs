@@ -199,14 +199,7 @@ public class ResidentController : MonoBehaviour
 
         // check whether resident moved 
         if (isMovementChange) {
-            //Debug.Log("Moved " + xValue + ", " + zValue);
             // Send action to bldg server
-            // TODO calculate new location
-
-            Debug.Log("~~~~ About to send move action for " + resident.alias + " ~~~~~~~~");
-            Debug.Log("~~~~ Current location: " + resident.location);
-            Debug.Log("~~~~ Current transform.position: " + transform.position);
-
             float playerPositionX = transform.position.x;
             float playerPositionZ = transform.position.z;
 
@@ -227,7 +220,6 @@ public class ResidentController : MonoBehaviour
             resident.y = moveY;
 
             string logical_location = currentResident.getResidentRelativeLocation();
-            Debug.Log("~~~~ Logical location on move: " + logical_location);
         }
     }
 

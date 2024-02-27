@@ -69,12 +69,10 @@ public class CurrentResidentController : ScriptableObjectSingleton<CurrentReside
             float logical_x = resident.x;
             float logical_y = resident.y;
 
-            Debug.Log("~~~~~~~~~~~~~~~ physical_location = " + logical_location + " (" + logical_x + ", " + logical_y + ")");
             // float scale_factor = (float)Math.Pow(10f, resident.nesting_depth);
 
             // subtract the location of the container bldg
             if (containerRenderedPosition != null) {
-                Debug.Log("~~~~~~~~~~~~~~~ Subtracting containerRenderedPosition: (" + containerRenderedPosition.x + ", " + containerRenderedPosition.z + ")");
                 logical_x = logical_x - containerRenderedPosition.x;
                 logical_y = logical_y - containerRenderedPosition.z;
             }
@@ -86,7 +84,6 @@ public class CurrentResidentController : ScriptableObjectSingleton<CurrentReside
 
             // update location with translated coords
             logical_location = AddressUtils.updateLocation(logical_location, (int)logical_x, (int)logical_y);
-            Debug.Log("~~~~~~~~~~~~~~~ logical_location = " + logical_location);
             return logical_location;
         }
     }
@@ -139,7 +136,6 @@ public class CurrentResidentController : ScriptableObjectSingleton<CurrentReside
         }
     }
 
-    // TODO is this still in use?
     public void SendEnterBldgAction(EnterBldgAction action) {
         // call the act API
         GlobalConfig conf = GlobalConfig.Instance;
@@ -162,7 +158,6 @@ public class CurrentResidentController : ScriptableObjectSingleton<CurrentReside
         });
     }
 
-    // TODO is this still in use?
   public void SendEnterBldgFlrAction(EnterBldgFlrAction action) {
         // call the act API
         GlobalConfig conf = GlobalConfig.Instance;
@@ -186,18 +181,15 @@ public class CurrentResidentController : ScriptableObjectSingleton<CurrentReside
         });
     }
 
-    // TODO is this still in use?
     public void SendExitBldgAction(ExitBldgAction action) {
         // call the act API
         GlobalConfig conf = GlobalConfig.Instance;
         string url = conf.bldgServer + conf.residentsBasePath + "/act";
-        Debug.Log("url = " + url);
         // invoke act API
         RequestHelper req = RestUtils.createRequest("POST", url, action);
         RestClient.Post<ActionResponse>(req).Then(actionResponse => {
             Debug.Log("Action sent, received new location");
             Debug.Log(actionResponse.data.location);
-            Debug.Log("~~~~~~~~ Received resident location as " + actionResponse.data.x + ", " + actionResponse.data.y);
             resident.location = actionResponse.data.location;
             resident.x = actionResponse.data.x;
             resident.y = actionResponse.data.y;
@@ -214,13 +206,10 @@ public class CurrentResidentController : ScriptableObjectSingleton<CurrentReside
         Debug.Log("~~~~~~~~~~~~~~ Say Action sent from " + action.resident_email + " and text: " + action.say_text);
         GlobalConfig conf = GlobalConfig.Instance;
         string url = conf.bldgServer + conf.residentsBasePath + "/act";
-        Debug.Log("url = " + url);
         // invoke act API
         RequestHelper req = RestUtils.createRequest("POST", url, action);
         RestClient.Post<ActionResponse>(req).Then(actionResponse => {
-            Debug.Log("~~~~~~~ Say Action sent & response received");
             if (action.say_text.StartsWith("/promote") || action.say_text.StartsWith("/demote")) {
-                Debug.Log("~~~~~~~~~~~~~~~ Say Action - this was a promote/demote command - sending event to reload container bldg");
                 // need to reload the container bldg
                 EventManager.Instance.TriggerEvent("PromoteOrDemote");
             }

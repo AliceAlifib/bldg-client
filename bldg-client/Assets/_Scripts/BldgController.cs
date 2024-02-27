@@ -748,7 +748,6 @@ public class BldgController : MonoBehaviour
 		CurrentResidentController crc = CurrentResidentController.Instance; 
 		try {
 			float scaleFactor = 10F;
-			Debug.Log("~~~~~ Player container is in scale " + scaleFactor);
 
 			string playerFlr = crc.resident.flr;
 			string playerAddress = AddressUtils.getBldg(playerFlr);
@@ -756,21 +755,16 @@ public class BldgController : MonoBehaviour
 
 			// get the rendered Y of the container bldg
 			float containerY = addressToRenderedY[playerAddress];
-			Debug.Log("~~~~~ Container Y for " + playerAddress + " is " + containerY);
 			height += containerY;
 
 			float playerFlr0Height = addressToFlr0Height[playerAddress] * scaleFactor;	// flr is part of the container bldg, which is 10x scale
-			Debug.Log("~~~~~ Player flr0 height for " + playerAddress + " is " + playerFlr0Height);
 			height += playerFlr0Height;
 
 			int playerFlrLevel = AddressUtils.getFlrLevel(playerFlr);
-			Debug.Log("~~~~~ Player flr level for " + playerFlr + " is " + playerFlrLevel);
 
 			float flrHeight = addressToFlrHeight[playerAddress] * scaleFactor;
-			Debug.Log("~~~~~ Player flr height for " + playerAddress + " is " + flrHeight);
 
 			height += flrHeight * playerFlrLevel;	// add also the initial resident standing height. TODO fix this
-			Debug.Log("~~~~~ Calculated player height is " + height);
 			
 			// TODO this shouldn't be fixed - user may have moved around, signed-off & signed-in again
 			Vector3 playerLocation = addressToLocation[playerAddress];
@@ -793,10 +787,7 @@ public class BldgController : MonoBehaviour
 		foreach (GameObject rsdnt in currentFlrResidents) {
 			cou++;
 			ResidentController rObj = rsdnt.GetComponent<ResidentController>();
-			Debug.Log("~~~~~~~~~~ " + cou + " checking RENDERED resident id: " + rObj.resident.id);
-			Debug.Log("~~~~~~~~~~ " + cou + " checking RENDERED resident alias: " + rObj.resident.alias);			
 			if (!idsCache.ContainsKey(rObj.resident.id)) {
-				Debug.Log("~~~~~~~~~~ " + cou + " not in cache so adding " + rObj.resident.id);
 				idsCache.Add(rObj.resident.id, rsdnt);
 				addrCache.Add(rObj.resident.id, rObj.resident.location);
 				lastUpdateCache.Add(rObj.resident.id, rObj.resident.updated_at);
@@ -858,17 +849,13 @@ public class BldgController : MonoBehaviour
 					baseline.x += r.x;
 					baseline.z += r.y;
 					// Debug.Log("Rendering resident " + r.alias + " at " + baseline.x + ", " + baseline.z);
-					Debug.Log("Changing direction of " + r.alias + " to " + r.direction);
 					Quaternion qrt = Quaternion.identity;
 					qrt.eulerAngles = new Vector3(0, r.direction, 0);
 					GameObject rsdtClone = (GameObject) Instantiate(baseResidentObject, baseline, qrt);
 					rsdtClone.tag = "Resident";
-					Debug.Log("~~~~~~~~~~ rendering resident " + r.id);
                     
 					ResidentController rsdtObject = rsdtClone.GetComponent<ResidentController>();
-					Debug.Log("~~~~~~~ About to set resident to controller with id " + r.id);
 					rsdtObject.initialize(r);
-					Debug.Log("~~~~~~~ rsdtController resident id = " + rsdtObject.resident.id);
 
 					// Debug.Log(r.alias);
 					//Debug.Log("About to call renderAuthorPicture on bldg " + count);
@@ -994,15 +981,12 @@ public class BldgController : MonoBehaviour
 		Debug.Log("~~~~~ Reloading container bldg");
 
 		// check whether the container bldg already has a model object
-		// Debug.Log("~~~~~ Currently inside scene " + SceneManager.GetActiveScene().name);
 		GameObject container = getContainerBldg();
-		// Debug.Log("~~~~~ and container bldg is: " + container);
 		
 		if (container == null) return;
 		BldgObject bldgObj = container.GetComponent<BldgObject>();
 		// if (bldgObj.model != null && bldgObj.model.address != null && bldgObj.model.address != "") return;
 
-		// Debug.Log("~~~~~~~~~~~ moving on with reload container bldg...");
 		// if not: load the data of the container bldg
 		// remove floor from address
 		string address = removeFlrFromAddress(currentAddress);
@@ -1011,14 +995,11 @@ public class BldgController : MonoBehaviour
 		// invoke the get bldg API
 		GlobalConfig conf = GlobalConfig.Instance;
         string url = conf.bldgServer + conf.bldgsBasePath + "/" + encodedAddress;
-		// Debug.Log("~~~~ Loading container bldg model from: " + url);
 		RequestHelper req = RestUtils.createRequest("GET", url);
 		RestClient.Get<WrappedBldg>(req).Then(res =>
 		{
 			bldgObj.model = res.data;
-			// Debug.Log("~~~~ Loaded container bldg data: " + bldgObj.model.name);
 			renderModelData(container, res.data);
-			// Debug.Log("~~~~ Done rendering container bldg data.");
 		}).Catch(err => {
 			Debug.Log(err.Message);
 			Debug.Log("Failed to load container bldg model: " + address);
